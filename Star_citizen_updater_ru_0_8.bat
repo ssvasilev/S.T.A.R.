@@ -1,6 +1,6 @@
 @echo off
-chcp 65001 >nul
 setlocal enabledelayedexpansion
+chcp 65001 >nul 2>&1
 
 :: Настройки
 set "LAUNCHER_DIR=%~dp0"
@@ -18,6 +18,12 @@ set "LIVE_PATH="
 set "PTU_REPO="
 set "PTU_VERSION="
 set "PTU_PATH="
+
+:: Переменные для версий с GitHub
+set "GITHUB_VERSION=не найдена"
+set "GITHUB_BUILD_TYPE=не найден"
+set "GITHUB_LIVE_VERSION=не найдена"
+set "GITHUB_PTU_VERSION=не найдена"
 
 :: Проверка наличия RSI Launcher.exe рядом со скриптом
 if exist "%LAUNCHER_DIR%RSI Launcher.exe" (
@@ -101,11 +107,11 @@ set "PATHS_LOADED=1"
 
 :: Файлы версий
 if not "!LIVE_PATH!"=="" (
-    set "LIVE_VERSION_FILE=!LIVE_PATH!\data\Localization\korean_(south_korea^)\global.ini"
+    set "LIVE_VERSION_FILE=!LIVE_PATH!\data\Localization\korean_(south_korea)\global.ini"
 )
 
 if not "!PTU_PATH!"=="" (
-    set "PTU_VERSION_FILE=!PTU_PATH!\data\Localization\korean_(south_korea^)\global.ini"
+    set "PTU_VERSION_FILE=!PTU_PATH!\data\Localization\korean_(south_korea)\global.ini"
 )
 
 :: Создание временной директории
@@ -114,11 +120,11 @@ if not exist "%TEMP_DIR%" mkdir "%TEMP_DIR%"
 :RestartDiagnostics
 :: Обновляем пути к файлам версий после возможной перенастройки
 if not "!LIVE_PATH!"=="" (
-    set "LIVE_VERSION_FILE=!LIVE_PATH!\data\Localization\korean_(south_korea^)\global.ini"
+    set "LIVE_VERSION_FILE=!LIVE_PATH!\data\Localization\korean_(south_korea)\global.ini"
 )
 
 if not "!PTU_PATH!"=="" (
-    set "PTU_VERSION_FILE=!PTU_PATH!\data\Localization\korean_(south_korea^)\global.ini"
+    set "PTU_VERSION_FILE=!PTU_PATH!\data\Localization\korean_(south_korea)\global.ini"
 )
 
 :: Проверка наличия версий
@@ -186,6 +192,15 @@ for /f "tokens=1,2 delims=:" %%a in ('type "%TEMP_DIR%\github_version.txt" 2^>nu
     if "%%a"=="VERSION" set "GITHUB_VERSION=%%b"
 )
 
+echo.
+echo === DEBUG: Версия с GitHub ===
+echo Файл: %TEMP_DIR%\github_version.txt
+echo Содержимое:
+type "%TEMP_DIR%\github_version.txt" 2>nul
+echo Найденная версия: !GITHUB_VERSION!
+echo === Конец debug ===
+echo.
+
 if "!GITHUB_VERSION!"=="не найдена" (
     echo.
     echo ОШИБКА: Не удалось определить версию на GitHub
@@ -205,33 +220,73 @@ echo.
 :: Проверяем тип сборки в GitHub релизе
 call :ShowProgress "Проверка типа сборки..." 100
 set "GITHUB_BUILD_TYPE=не найден"
+set "GITHUB_LIVE_VERSION=не найдена"
+set "GITHUB_PTU_VERSION=не найдена"
 
-:: Скачиваем global.ini из GitHub для проверки типа сборки (используем curl если доступен, иначе PowerShell)
-where curl >nul 2>&1
-if %errorlevel% equ 0 (
-    :: Используем curl
-    curl -s -o "%TEMP_DIR%\github_global.ini" "https://raw.githubusercontent.com/%GITHUB_AUTOR%/%GITHUB_REPO%/master/data/Localization/korean_(south_korea)/global.ini"
-) else (
-    :: Используем PowerShell без кириллицы в команде
-    powershell -NoProfile -Command "try { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/%GITHUB_AUTOR%/%GITHUB_REPO%/master/data/Localization/korean_(south_korea)/global.ini', '%TEMP_DIR%\github_global.ini'); exit 0 } catch { exit 1 }" >nul 2>&1
+echo.
+echo === DEBUG: Определение типа сборки ===
+echo Используем PowerShell для поиска типа сборки в файле с GitHub...
+echo.
+
+:: Используем PowerShell для поиска типа сборки и сохраняем результат в переменную
+echo Выполняю PowerShell команду...
+echo DEBUG: Загружаю содержимое файла с GitHub...
+powershell -NoProfile -Command "try { $content = (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/%GITHUB_AUTOR%/%GITHUB_REPO%/master/data/Localization/korean_(south_korea)/global.ini'); Write-Host 'Первые 500 символов файла:'; Write-Host $content.Substring(0, [Math]::Min(500, $content.Length)); Write-Host ''; Write-Host 'Поиск строки Установленная версия:'; if ($content -match 'Установленная версия:\s+(LIVE|PTU)\s+[\d\.]+\s+v\d+') { Write-Host 'Найдено: ' $matches[0]; Write-Host 'Тип сборки: ' $matches[1] } else { Write-Host 'Не найдено' } } catch { Write-Host 'Ошибка: ' $_.Exception.Message }" 2>&1
+
+for /f "delims=" %%b in ('powershell -NoProfile -Command "try { $content = (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/%GITHUB_AUTOR%/%GITHUB_REPO%/master/data/Localization/korean_(south_korea)/global.ini'); if ($content -match 'Установленная версия:\s+(LIVE|PTU)\s+[\d\.]+\s+v\d+') { Write-Host $matches[1] } else { Write-Host 'не найден' } } catch { Write-Host 'не найден' }" 2^>nul') do (
+    set "GITHUB_BUILD_TYPE=%%b"
+    echo PowerShell вернул: [%%b]
 )
 
-if exist "%TEMP_DIR%\github_global.ini" (
-    call :GetBuildTypeFromFile "%TEMP_DIR%\github_global.ini" GITHUB_BUILD_TYPE
-) 
+:: Очищаем переменную от пробелов
+for /f "tokens=*" %%a in ("!GITHUB_BUILD_TYPE!") do set "GITHUB_BUILD_TYPE=%%a"
 
-if "!GITHUB_BUILD_TYPE!"=="не найден" (
+echo Переменная GITHUB_BUILD_TYPE установлена в: [!GITHUB_BUILD_TYPE!]
+
+echo === DEBUG: Результат парсинга ===
+echo Найденный тип сборки: [!GITHUB_BUILD_TYPE!]
+echo === Конец debug ===
+echo.
+
+echo === DEBUG: Перед установкой переменных ===
+echo GITHUB_VERSION: [!GITHUB_VERSION!]
+echo GITHUB_BUILD_TYPE: [!GITHUB_BUILD_TYPE!]
+echo === Конец debug ===
+echo.
+
+if "!GITHUB_BUILD_TYPE!"=="LIVE" (
+    set "GITHUB_LIVE_VERSION=!GITHUB_VERSION!"
+    echo ✓ Тип сборки в GitHub релизе: LIVE
+    echo DEBUG: Установлена GITHUB_LIVE_VERSION=[!GITHUB_LIVE_VERSION!]
+) else if "!GITHUB_BUILD_TYPE!"=="PTU" (
+    set "GITHUB_PTU_VERSION=!GITHUB_VERSION!"
+    echo ✓ Тип сборки в GitHub релизе: PTU
+    echo DEBUG: Установлена GITHUB_PTU_VERSION=[!GITHUB_PTU_VERSION!]
+) else (
     echo ⚠️ Не удалось определить тип сборки в GitHub релизе
-    echo Продолжаем с предположением, что релиз корректный
+    echo Версия не будет предложена для обновления
+    echo DEBUG: GITHUB_BUILD_TYPE не совпадает ни с LIVE ни с PTU: [!GITHUB_BUILD_TYPE!]
     set "GITHUB_BUILD_TYPE=UNKNOWN"
-) else (
-    echo ✓ Тип сборки в GitHub релизе: !GITHUB_BUILD_TYPE!
 )
 
+echo === Конец debug ===
+echo.
+
+echo.
+
+echo === DEBUG: Значения переменных версий ПОСЛЕ установки ===
+echo GITHUB_VERSION: [!GITHUB_VERSION!]
+echo GITHUB_BUILD_TYPE: [!GITHUB_BUILD_TYPE!]
+echo GITHUB_LIVE_VERSION: [!GITHUB_LIVE_VERSION!]
+echo GITHUB_PTU_VERSION: [!GITHUB_PTU_VERSION!]
+echo === Конец debug ===
 echo.
 
 :: Устанавливаем флаг что таблица статуса готова
 set "STATUS_TABLE_READY=1"
+
+:: ТЕПЕРЬ перерисовываем экран с правильными значениями переменных
+call :RedrawScreen
 
 :: Проверка необходимости обновления
 set "CHOICE_AVAILABLE=false"
@@ -240,20 +295,28 @@ set "SELECTED_PATH="
 
 if "!LIVE_FOUND!"=="true" (
     if "!LIVE_VERSION!"=="не найдена" (
-        set "CHOICE_AVAILABLE=true"
-    ) else (
-        if not "!LIVE_VERSION!"=="!GITHUB_VERSION!" (
+        if not "!GITHUB_LIVE_VERSION!"=="не найдена" (
             set "CHOICE_AVAILABLE=true"
+        )
+    ) else (
+        if not "!LIVE_VERSION!"=="!GITHUB_LIVE_VERSION!" (
+            if not "!GITHUB_LIVE_VERSION!"=="не найдена" (
+                set "CHOICE_AVAILABLE=true"
+            )
         )
     )
 )
 
 if "!PTU_FOUND!"=="true" (
     if "!PTU_VERSION!"=="не найдена" (
-        set "CHOICE_AVAILABLE=true"
-    ) else (
-        if not "!PTU_VERSION!"=="!GITHUB_VERSION!" (
+        if not "!GITHUB_PTU_VERSION!"=="не найдена" (
             set "CHOICE_AVAILABLE=true"
+        )
+    ) else (
+        if not "!PTU_VERSION!"=="!GITHUB_PTU_VERSION!" (
+            if not "!GITHUB_PTU_VERSION!"=="не найдена" (
+                set "CHOICE_AVAILABLE=true"
+            )
         )
     )
 )
@@ -275,36 +338,28 @@ echo [4/4] Выбор версии для обновления:
 echo.
 
 if "!LIVE_FOUND!"=="true" (
-    :: Показываем обновление для LIVE только если GitHub релиз содержит LIVE сборку или тип неизвестен
-    if "!GITHUB_BUILD_TYPE!"=="LIVE" (
+    :: Показываем обновление для LIVE только если есть новая версия LIVE
+    if not "!GITHUB_LIVE_VERSION!"=="не найдена" (
         if "!LIVE_VERSION!"=="не найдена" (
-            echo  1 - Установить LIVE локализацию версии !GITHUB_VERSION!
+            echo  1 - Установить LIVE локализацию версии !GITHUB_LIVE_VERSION!
         ) else (
-            if not "!LIVE_VERSION!"=="!GITHUB_VERSION!" (
-                echo  1 - Обновить LIVE, текущая: !LIVE_VERSION! → !GITHUB_VERSION!
+            if not "!LIVE_VERSION!"=="!GITHUB_LIVE_VERSION!" (
+                echo  1 - Обновить LIVE, текущая: !LIVE_VERSION! → !GITHUB_LIVE_VERSION!
             )
         )
-    ) else if "!GITHUB_BUILD_TYPE!"=="UNKNOWN" (
-        if "!LIVE_VERSION!"=="не найдена" (
-            echo  1 - Установить LIVE локализацию версии !GITHUB_VERSION!
-        ) else (
-            if not "!LIVE_VERSION!"=="!GITHUB_VERSION!" (
-                echo  1 - Обновить LIVE, текущая: !LIVE_VERSION! → !GITHUB_VERSION!
-            )
-        )
-    ) else if "!GITHUB_BUILD_TYPE!"=="PTU" (
-        echo ⚠️  В GitHub релизе находится PTU сборка, обновление LIVE недоступно
+    ) else (
+        echo ⚠️  Нет доступных обновлений для LIVE
     )
 )
 
 if "!PTU_FOUND!"=="true" (
-    :: Показываем обновление для PTU только если GitHub релиз содержит PTU сборку или тип неизвестен
-    if "!GITHUB_BUILD_TYPE!"=="PTU" (
+    :: Показываем обновление для PTU только если есть новая версия PTU
+    if not "!GITHUB_PTU_VERSION!"=="не найдена" (
         if "!PTU_VERSION!"=="не найдена" (
-            echo  2 - Установить PTU локализацию версии !GITHUB_VERSION!
+            echo  2 - Установить PTU локализацию версии !GITHUB_PTU_VERSION!
         ) else (
-            if not "!PTU_VERSION!"=="!GITHUB_VERSION!" (
-                echo  2 - Обновить PTU, текущая: !PTU_VERSION! → !GITHUB_VERSION!
+            if not "!PTU_VERSION!"=="!GITHUB_PTU_VERSION!" (
+                echo  2 - Обновить PTU, текущая: !PTU_VERSION! → !GITHUB_PTU_VERSION!
             )
         )
     ) else if "!GITHUB_BUILD_TYPE!"=="UNKNOWN" (
@@ -312,11 +367,11 @@ if "!PTU_FOUND!"=="true" (
             echo  2 - Установить PTU локализацию версии !GITHUB_VERSION!
         ) else (
             if not "!PTU_VERSION!"=="!GITHUB_VERSION!" (
-                echo  2 - Обновить PTU, текущая: !PTU_VERSION! → !GITHUB_VERSION!
+                echo  2 - Обновить PTU, текущая: !PTU_VERSION! → !GITHUB_PTU_VERSION!
             )
         )
-    ) else if "!GITHUB_BUILD_TYPE!"=="LIVE" (
-        echo ⚠️  В GitHub релизе находится LIVE сборка, обновление PTU недоступно
+    ) else (
+        echo ⚠️  Нет доступных обновлений для PTU
     )
 )
 
@@ -326,30 +381,36 @@ echo.
 set /p "CHOICE=Выберите вариант (0-3): "
 
 if "!CHOICE!"=="1" if "!LIVE_FOUND!"=="true" (
-    if "!LIVE_VERSION!"=="не найдена" (
-        set "SELECTED_VERSION=LIVE"
-        set "SELECTED_PATH=!LIVE_PATH!"
-        set "TARGET_VERSION=!GITHUB_VERSION!"
-    ) else (
-        if not "!LIVE_VERSION!"=="!GITHUB_VERSION!" (
+    if not "!GITHUB_LIVE_VERSION!"=="не найдена" (
+        if "!LIVE_VERSION!"=="не найдена" (
             set "SELECTED_VERSION=LIVE"
             set "SELECTED_PATH=!LIVE_PATH!"
-            set "TARGET_VERSION=!GITHUB_VERSION!"
+            set "TARGET_VERSION=!GITHUB_LIVE_VERSION!"
+        ) else (
+            if not "!LIVE_VERSION!"=="!GITHUB_LIVE_VERSION!" (
+                set "SELECTED_VERSION=LIVE"
+                set "SELECTED_PATH=!LIVE_PATH!"
+                set "TARGET_VERSION=!GITHUB_LIVE_VERSION!"
+            )
         )
     )
 )
 
 if "!CHOICE!"=="2" if "!PTU_FOUND!"=="true" (
-    if "!PTU_VERSION!"=="не найдена" (
-        set "SELECTED_VERSION=PTU"
-        set "SELECTED_PATH=!PTU_PATH!"
-        set "TARGET_VERSION=!GITHUB_VERSION!"
-    ) else (
-        if not "!PTU_VERSION!"=="!GITHUB_VERSION!" (
+    if not "!GITHUB_PTU_VERSION!"=="не найдена" (
+        if "!PTU_VERSION!"=="не найдена" (
             set "SELECTED_VERSION=PTU"
             set "SELECTED_PATH=!PTU_PATH!"
-            set "TARGET_VERSION=!GITHUB_VERSION!"
+            set "TARGET_VERSION=!GITHUB_PTU_VERSION!"
+        ) else (
+            if not "!PTU_VERSION!"=="!GITHUB_PTU_VERSION!" (
+                set "SELECTED_VERSION=PTU"
+                set "SELECTED_PATH=!PTU_PATH!"
+                set "TARGET_VERSION=!GITHUB_PTU_VERSION!"
+            )
         )
+    )
+)
     )
 )
 
@@ -395,7 +456,7 @@ if %errorlevel% neq 0 (
 call :ShowProgress "Проверка типа сборки..." 70
 
 :: Проверяем тип сборки в скачанном архиве
-set "ARCHIVE_GLOBAL_INI=%TEMP_DIR%\extracted\StarCitizenRu-master\data\Localization\korean_(south_korea^)\global.ini"
+set "ARCHIVE_GLOBAL_INI=%TEMP_DIR%\extracted\StarCitizenRu-master\data\Localization\korean_(south_korea)\global.ini"
 set "ARCHIVE_BUILD_TYPE=не найден"
 
 if exist "%ARCHIVE_GLOBAL_INI%" (
@@ -970,6 +1031,28 @@ for /f "delims=" %%b in ('powershell -NoProfile -Command "try { $content = Get-C
 set "%return_var%=%version%"
 goto :eof
 
+:: Функция извлечения версии из файла с проверкой типа сборки
+:: Параметры: file_path, build_type_needed (LIVE или PTU), return_var
+:GetVersionFromFileWithTypeCheck
+set "file_path=%~1"
+set "build_type_needed=%~2"
+set "return_var=%~3"
+set "version=не найдена"
+
+if not exist "%file_path%" (
+    set "%return_var%=не найдена"
+    goto :eof
+)
+
+:: Используем PowerShell для чтения файла и проверки типа сборки
+:: Ищем строку с "Установленная версия:" и проверяем, что она начинается с нужного типа
+for /f "delims=" %%b in ('powershell -NoProfile -Command "try { $content = Get-Content '%file_path%' -ErrorAction Stop -Encoding UTF8 -Raw; if($content -match 'Установленная версия:\s+(%build_type_needed%)\s+([\d\.]+\s+v\d+)') { $matches[2] } else { 'не найдена' } } catch { 'не найдена' }" 2^>nul') do (
+    set "version=%%b"
+)
+
+set "%return_var%=%version%"
+goto :eof
+
 :: Функция извлечения типа сборки из файла global.ini (LIVE или PTU)
 :GetBuildTypeFromFile
 set "file_path=%~1"
@@ -981,10 +1064,24 @@ if not exist "%file_path%" (
     goto :eof
 )
 
+:: DEBUG: Выводим содержимое файла
+echo.
+echo === DEBUG: Содержимое файла ===
+echo Путь: %file_path%
+type "%file_path%" 2>nul
+echo === Конец файла ===
+echo.
+
 :: Используем PowerShell для извлечения типа сборки
 for /f "delims=" %%b in ('powershell -NoProfile -Command "try { $content = Get-Content '%file_path%' -ErrorAction Stop -Encoding UTF8 -Raw; if($content -match 'Установленная версия:\s+(LIVE|PTU)\s+[\d\.]+\s+v\d+') { $matches[1] } else { 'не найден' } } catch { 'не найден' }" 2^>nul') do (
     set "build_type=%%b"
 )
+
+:: DEBUG: Выводим найденный тип сборки
+echo === DEBUG: Результат парсинга ===
+echo Найденный тип сборки: !build_type!
+echo === Конец debug ===
+echo.
 
 set "%return_var%=%build_type%"
 goto :eof
@@ -1130,30 +1227,42 @@ if defined STATUS_TABLE_READY (
     
     if "!LIVE_FOUND!"=="true" (
         if "!LIVE_VERSION!"=="не найдена" (
-            echo  ║ LIVE   │ не установлена  │ !GITHUB_VERSION!  │   ✗ Не установлена    ║
-        ) else (
-            if "!LIVE_VERSION_NUM!"=="!GITHUB_VERSION_NUM!" (
-                echo  ║ LIVE   │    !LIVE_VERSION!    │ !GITHUB_VERSION!  │   ✓ Актуальна         ║
+            if not "!GITHUB_LIVE_VERSION!"=="не найдена" (
+                echo  ║ LIVE   │ не установлена  │ !GITHUB_LIVE_VERSION!  │   ✗ Не установлена    ║
             ) else (
-                echo  ║ LIVE   │    !LIVE_VERSION!    │ !GITHUB_VERSION!  │   ✗ Устарела          ║
+                echo  ║ LIVE   │ не установлена  │ нет обновлений │   ✗ Не установлена    ║
+            )
+        ) else (
+            if "!LIVE_VERSION!"=="!GITHUB_LIVE_VERSION!" (
+                echo  ║ LIVE   │    !LIVE_VERSION!    │ !GITHUB_LIVE_VERSION!  │   ✓ Актуальна         ║
+            ) else if not "!GITHUB_LIVE_VERSION!"=="не найдена" (
+                echo  ║ LIVE   │    !LIVE_VERSION!    │ !GITHUB_LIVE_VERSION!  │   ✗ Устарела          ║
+            ) else (
+                echo  ║ LIVE   │    !LIVE_VERSION!    │ нет обновлений │   ✓ Актуальна         ║
             )
         )
     ) else (
-        echo  ║ LIVE   │    не найдена   │ !GITHUB_VERSION!  │   ✗ Не установлена    ║
+        echo  ║ LIVE   │    не найдена   │ нет данных │   ✗ Не установлена    ║
     )
     
     if "!PTU_FOUND!"=="true" (
         if "!PTU_VERSION!"=="не найдена" (
-            echo  ║ PTU    │ не установлена  │ !GITHUB_VERSION!  │   ✗ Не установлена    ║
-        ) else (
-            if "!PTU_VERSION_NUM!"=="!GITHUB_VERSION_NUM!" (
-                echo  ║ PTU    │    !PTU_VERSION!    │ !GITHUB_VERSION!  │   ✓ Актуальна         ║
+            if not "!GITHUB_PTU_VERSION!"=="не найдена" (
+                echo  ║ PTU    │ не установлена  │ !GITHUB_PTU_VERSION!  │   ✗ Не установлена    ║
             ) else (
-                echo  ║ PTU    │    !PTU_VERSION!    │ !GITHUB_VERSION!  │   ✗ Устарела          ║
+                echo  ║ PTU    │ не установлена  │ нет обновлений │   ✗ Не установлена    ║
+            )
+        ) else (
+            if "!PTU_VERSION!"=="!GITHUB_PTU_VERSION!" (
+                echo  ║ PTU    │    !PTU_VERSION!    │ !GITHUB_PTU_VERSION!  │   ✓ Актуальна         ║
+            ) else if not "!GITHUB_PTU_VERSION!"=="не найдена" (
+                echo  ║ PTU    │    !PTU_VERSION!    │ !GITHUB_PTU_VERSION!  │   ✗ Устарела          ║
+            ) else (
+                echo  ║ PTU    │    !PTU_VERSION!    │ нет обновлений │   ✓ Актуальна         ║
             )
         )
     ) else (
-        echo  ║ PTU    │    не найдена   │ !GITHUB_VERSION!  │   ✗ Не установлена    ║
+        echo  ║ PTU    │    не найдена   │ нет данных │   ✗ Не установлена    ║
     )
     
     echo  ╚═══════════════════════════════════════════════════════════════╝
@@ -1297,7 +1406,6 @@ if exist "%user_cfg_path%" (
     
 ) else (
     :: 2.1. Если файла нет - создаём его с параметрами
-    pause
     echo Файл user.cfg не найден
     echo Создание нового файла user.cfg...
     
