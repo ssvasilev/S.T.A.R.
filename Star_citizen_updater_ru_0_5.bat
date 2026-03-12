@@ -101,11 +101,11 @@ set "PATHS_LOADED=1"
 
 :: Файлы версий
 if not "!LIVE_PATH!"=="" (
-    set "LIVE_VERSION_FILE=!LIVE_PATH!\data\Localization\korean_(south_korea)\global.ini"
+    set "LIVE_VERSION_FILE=!LIVE_PATH!\data\Localization\korean_(south_korea^)\global.ini"
 )
 
 if not "!PTU_PATH!"=="" (
-    set "PTU_VERSION_FILE=!PTU_PATH!\data\Localization\korean_(south_korea)\global.ini"
+    set "PTU_VERSION_FILE=!PTU_PATH!\data\Localization\korean_(south_korea^)\global.ini"
 )
 
 :: Создание временной директории
@@ -114,11 +114,11 @@ if not exist "%TEMP_DIR%" mkdir "%TEMP_DIR%"
 :RestartDiagnostics
 :: Обновляем пути к файлам версий после возможной перенастройки
 if not "!LIVE_PATH!"=="" (
-    set "LIVE_VERSION_FILE=!LIVE_PATH!\data\Localization\korean_(south_korea)\global.ini"
+    set "LIVE_VERSION_FILE=!LIVE_PATH!\data\Localization\korean_(south_korea^)\global.ini"
 )
 
 if not "!PTU_PATH!"=="" (
-    set "PTU_VERSION_FILE=!PTU_PATH!\data\Localization\korean_(south_korea)\global.ini"
+    set "PTU_VERSION_FILE=!PTU_PATH!\data\Localization\korean_(south_korea^)\global.ini"
 )
 
 :: Проверка наличия версий
@@ -341,7 +341,7 @@ if %errorlevel% neq 0 (
 call :ShowProgress "Проверка типа сборки..." 70
 
 :: Проверяем тип сборки в скачанном архиве
-set "ARCHIVE_GLOBAL_INI=%TEMP_DIR%\extracted\StarCitizenRu-master\data\Localization\korean_(south_korea)\global.ini"
+set "ARCHIVE_GLOBAL_INI=%TEMP_DIR%\extracted\StarCitizenRu-master\data\Localization\korean_(south_korea^)\global.ini"
 set "ARCHIVE_BUILD_TYPE=не найден"
 
 if exist "%ARCHIVE_GLOBAL_INI%" (
@@ -531,7 +531,7 @@ if not exist "!game_path!\StarCitizen_Launcher.exe" (
 )
 
 :: 4. Проверка файла локализации
-if not exist "!game_path!\data\Localization\korean_(south_korea)\global.ini" (
+if not exist "!game_path!\data\Localization\korean_(south_korea^)\global.ini" (
     echo ⚠ Внимание: Файл локализации не найден
     echo Это может быть новая установка игры
 )
@@ -1121,7 +1121,7 @@ goto :eof
 :RefreshVersionStatus
 :: Определяем пути к файлам версий и обновляем статус
 if not "!LIVE_PATH!"=="" (
-    set "LIVE_VERSION_FILE=!LIVE_PATH!\data\Localization\korean_(south_korea)\global.ini"
+    set "LIVE_VERSION_FILE=!LIVE_PATH!\data\Localization\korean_(south_korea^)\global.ini"
     if exist "!LIVE_VERSION_FILE!" (
         call :GetVersionFromFile "!LIVE_VERSION_FILE!" LIVE_VERSION
         set "LIVE_FOUND=true"
@@ -1134,7 +1134,7 @@ if not "!LIVE_PATH!"=="" (
 )
 
 if not "!PTU_PATH!"=="" (
-    set "PTU_VERSION_FILE=!PTU_PATH!\data\Localization\korean_(south_korea)\global.ini"
+    set "PTU_VERSION_FILE=!PTU_PATH!\data\Localization\korean_(south_korea^)\global.ini"
     if exist "!PTU_VERSION_FILE!" (
         call :GetVersionFromFile "!PTU_VERSION_FILE!" PTU_VERSION
         set "PTU_FOUND=true"
