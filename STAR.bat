@@ -34,8 +34,8 @@ set "CLR_DEFAULT=%CLR_CYAN%"
 set "SCRIPT_DIR=%~dp0"
 set "GITHUB_AUTHOR=n1ghter"
 set "GITHUB_REPO=StarCitizenRu"
-set "TEMP_DIR=%TEMP%\sc_ru_updater"
-set "CONFIG_FILE=%SCRIPT_DIR%sc_ru_config.cfg"
+set "TEMP_DIR=%TEMP%\star_updater"
+set "CONFIG_FILE=%SCRIPT_DIR%star_config.cfg"
 
 :: -----------------------------
 :: Конфигурация
