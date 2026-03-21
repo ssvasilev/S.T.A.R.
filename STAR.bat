@@ -18,8 +18,14 @@ set "CLR_DEFAULT=%CLR_CYAN%"
 
 
 :: =========================================================
-:: Star Citizen - Русская локализация
-:: Обновление по тегам GitHub:
+:: STAR - Script To Apply Russian.
+:: Скрипт для установки русской локализации в Star citizen.
+:: Автор: ssvasilev (Demoneo)
+:: Репозиторий: https://github.com/ssvasilev/S.T.A.R.
+::
+:: Может быть настроен на произвольный источник локализации в Github, сейчас ориентирован на репозиторий: n1ghter/StarCitizenRu
+::
+:: Поиск обновлений по тегам GitHub:
 ::   LIVE -> tag вида X.Y.Z-vNN
 ::   PTU  -> tag вида X.Y.Z-vNN-ptu
 ::
@@ -470,7 +476,8 @@ goto :eof
 :DrawHeader
 echo.
 echo ════════════════════════════════════════
-echo    Star Citizen - Русская локализация
+echo STAR - Script To Apply Russian.
+echo Скрипт для установки русской локализации в Star citizen.
 echo ════════════════════════════════════════
 echo.
 goto :eof
