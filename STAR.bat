@@ -6,7 +6,7 @@ chcp 65001 >nul 2>&1
 for /f %%e in ('echo prompt $E^| cmd') do set "ESC=%%e"
 
 
-::ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ° Ñ†Ð²ÐµÑ‚Ð¾Ð² ÑÑ‚Ð°Ñ‚ÑƒÑÐ¾Ð²
+::Íàñòðîéêà öâåòîâ ñòàòóñîâ
 set "CLR_RESET=%ESC%[0m"
 set "CLR_GREEN=%ESC%[92m"
 set "CLR_YELLOW=%ESC%[93m"
@@ -19,23 +19,23 @@ set "CLR_DEFAULT=%CLR_CYAN%"
 
 :: =========================================================
 :: STAR - Script To Apply Russian.
-:: Ð¡ÐºÑ€Ð¸Ð¿Ñ‚ Ð´Ð»Ñ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ¸ Ñ€ÑƒÑÑÐºÐ¾Ð¹ Ð»Ð¾ÐºÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ð¸ Ð² Star citizen.
-:: ÐÐ²Ñ‚Ð¾Ñ€: ssvasilev (Demoneo)
-:: Ð ÐµÐ¿Ð¾Ð·Ð¸Ñ‚Ð¾Ñ€Ð¸Ð¹: https://github.com/ssvasilev/STAR
+:: Ñêðèïò äëÿ óñòàíîâêè ðóññêîé ëîêàëèçàöèè â Star citizen.
+:: Àâòîð: ssvasilev (Demoneo)
+:: Ðåïîçèòîðèé: https://github.com/ssvasilev/STAR
 ::
-:: Ð¡ÐºÑ€Ð¸Ð¿Ñ‚ ÑÐµÐ¹Ñ‡Ð°Ñ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ Ñ„Ð°Ð¹Ð» Ð»Ð¾ÐºÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ð¸ Ð¸Ð· Ñ€ÐµÐ¿Ð¾Ð·Ð¸Ñ‚Ð¾Ñ€Ð¸Ñ: n1ghter/StarCitizenRu
-:: ÐŸÑ€Ð¸ Ð½ÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ð¾ÑÑ‚Ð¸ Ð¼Ð¾Ð¶ÐµÑ‚  Ð±Ñ‹Ñ‚ÑŒ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½ Ð¿Ñ€Ð¾Ð¸Ð·Ð²Ð¾Ð»ÑŒÐ½Ñ‹Ð¹ Ð¸ÑÑ‚Ð¾Ñ‡Ð½Ð¸Ðº Ð»Ð¾ÐºÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ð¸ Ð² Github.
+:: Ñêðèïò ñåé÷àñ èñïîëüçóåò ôàéë ëîêàëèçàöèè èç ðåïîçèòîðèÿ: n1ghter/StarCitizenRu
+:: Ïðè íåîáõîäèìîñòè ìîæåò  áûòü èñïîëüçîâàí ïðîèçâîëüíûé èñòî÷íèê ëîêàëèçàöèè â Github.
 ::
-:: Ð¡ÐºÑ€Ð¸Ð¿Ñ‚ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ Ð´Ð»Ñ Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ñ Ð²ÐµÑ€ÑÐ¸Ð¹ LIVE Ð¸ PTU. ÐŸÐ¾Ð¸ÑÐº Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ð¹ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÑÐµÑ‚ÑÑ Ð¿Ð¾ Ñ‚ÐµÐ³Ð°Ð¼ Ð² Ñ€ÐµÐ¿Ð¾Ð·Ð¸Ñ‚Ð¾Ñ€Ð¸Ð¸ GitHub:
-::   LIVE -> tag Ð²Ð¸Ð´Ð° X.Y.Z-vNN
-::   PTU  -> tag Ð²Ð¸Ð´Ð° X.Y.Z-vNN-ptu
+:: Ñêðèïò èñïîëüçóåòñÿ äëÿ îáíîâëåíèÿ âåðñèé LIVE è PTU. Ïîèñê îáíîâëåíèé âûïîëíÿåòñÿ ïî òåãàì â ðåïîçèòîðèè GitHub:
+::   LIVE -> tag âèäà X.Y.Z-vNN
+::   PTU  -> tag âèäà X.Y.Z-vNN-ptu
 ::
-:: ÐŸÐ¾ÑÐ»Ðµ ÑÐºÐ°Ñ‡Ð¸Ð²Ð°Ð½Ð¸Ñ Ð°Ñ€Ñ…Ð¸Ð²Ð° Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÐµÑ‚ÑÑ ÐµÐ³Ð¾ ÑÐ¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ.
-:: Ð•ÑÐ»Ð¸ Ð¾Ð½Ð¾ Ð½Ðµ Ð¿Ð¾Ð´Ñ…Ð¾Ð´Ð¸Ñ‚ Ð´Ð»Ñ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ð¹ Ð²ÐµÑ€ÑÐ¸Ð¸, Ð±ÑƒÐ´ÑƒÑ‚ ÑÐºÐ°Ñ‡Ð°Ð½Ñ‹ Ð¸ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐµÐ½Ñ‹ Ð¿Ñ€ÐµÐ´Ñ‹Ð´ÑƒÑ‰Ð¸Ðµ Ð²ÐµÑ€ÑÐ¸Ð¸ Ð°Ñ€Ñ…Ð¸Ð²Ð°.
+:: Ïîñëå ñêà÷èâàíèÿ àðõèâà ïðîâåðÿåòñÿ åãî ñîäåðæèìîå.
+:: Åñëè îíî íå ïîäõîäèò äëÿ âûáðàííîé âåðñèè, áóäóò ñêà÷àíû è ïðîâåðåíû ïðåäûäóùèå âåðñèè àðõèâà.
 :: =========================================================
 
 :: -----------------------------
-:: ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸
+:: Íàñòðîéêè
 :: -----------------------------
 set "SCRIPT_DIR=%~dp0"
 set "GITHUB_AUTHOR=n1ghter"
@@ -44,7 +44,7 @@ set "TEMP_DIR=%TEMP%\star_updater"
 set "CONFIG_FILE=%SCRIPT_DIR%star_config.cfg"
 
 :: -----------------------------
-:: ÐšÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ñ
+:: Êîíôèãóðàöèÿ
 :: -----------------------------
 set "LAUNCHER_PATH="
 set "LIVE_REPO="
@@ -55,9 +55,9 @@ set "PTU_VERSION="
 set "PTU_PATH="
 
 :: -----------------------------
-:: Ð¡Ð¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ð¸ / Ð¿Ð¾Ð¸ÑÐºÐ°
-:: CONFIGURED = Ð¿ÑƒÑ‚ÑŒ Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½ Ð¸ Ð²Ð°Ð»Ð¸Ð´ÐµÐ½
-:: FOUND      = Ð¿Ð¾Ñ‚ÐµÐ½Ñ†Ð¸Ð°Ð»ÑŒÐ½Ð°Ñ Ð¿Ð°Ð¿ÐºÐ° Ð±Ñ‹Ð»Ð° Ð¾Ð±Ð½Ð°Ñ€ÑƒÐ¶ÐµÐ½Ð° Ð¿Ð¾Ð¸ÑÐºÐ¾Ð¼
+:: Ñîñòîÿíèå êîíôèãóðàöèè / ïîèñêà
+:: CONFIGURED = ïóòü íàñòðîåí è âàëèäåí
+:: FOUND      = ïîòåíöèàëüíàÿ ïàïêà áûëà îáíàðóæåíà ïîèñêîì
 :: -----------------------------
 set "LIVE_CONFIGURED=false"
 set "PTU_CONFIGURED=false"
@@ -65,27 +65,27 @@ set "PTU_CONFIGURED=false"
 set "LIVE_FOUND=false"
 set "PTU_FOUND=false"
 
-set "LIVE_BUILD_TYPE=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½"
-set "PTU_BUILD_TYPE=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½"
+set "LIVE_BUILD_TYPE=íå íàéäåí"
+set "PTU_BUILD_TYPE=íå íàéäåí"
 
-set "LIVE_VERSION_DIGITS=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°"
-set "PTU_VERSION_DIGITS=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°"
+set "LIVE_VERSION_DIGITS=íå íàéäåíà"
+set "PTU_VERSION_DIGITS=íå íàéäåíà"
 
 set "LIVE_TYPE_MISMATCH=false"
 set "PTU_TYPE_MISMATCH=false"
 
-set "LIVE_STATUS=Ð½ÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ…"
-set "PTU_STATUS=Ð½ÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ…"
+set "LIVE_STATUS=íåò äàííûõ"
+set "PTU_STATUS=íåò äàííûõ"
 
 set "INSTALL_LIVE_NEEDED=false"
 set "INSTALL_PTU_NEEDED=false"
 set "CURRENT_INSTALL="
 
-set "INSTALL_LIVE_RESULT=Ð½Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÐ»Ð°ÑÑŒ"
-set "INSTALL_PTU_RESULT=Ð½Ðµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÐ»Ð°ÑÑŒ"
+set "INSTALL_LIVE_RESULT=íå ïðîâåðÿëàñü"
+set "INSTALL_PTU_RESULT=íå ïðîâåðÿëàñü"
 
 :: -----------------------------
-:: GitHub ÑÑ‚Ð°Ñ‚ÑƒÑ Ð¸ ÐºÐ°Ð½Ð´Ð¸Ð´Ð°Ñ‚Ñ‹
+:: GitHub ñòàòóñ è êàíäèäàòû
 :: -----------------------------
 set "GITHUB_OK=false"
 
@@ -95,9 +95,9 @@ set "PTU_CAND_COUNT=0"
 set "LIVE_CURRENT_INDEX=1"
 set "PTU_CURRENT_INDEX=1"
 
-set "LATEST_LIVE_VERSION=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°"
+set "LATEST_LIVE_VERSION=íå íàéäåíà"
 set "LATEST_LIVE_TAG="
-set "LATEST_PTU_VERSION=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°"
+set "LATEST_PTU_VERSION=íå íàéäåíà"
 set "LATEST_PTU_TAG="
 
 set "LAST_REJECTED_LIVE_TAG="
@@ -109,7 +109,7 @@ set "PATHS_LOADED="
 if not exist "%TEMP_DIR%" mkdir "%TEMP_DIR%" >nul 2>&1
 
 :: -----------------------------
-:: ÐÐ²Ñ‚Ð¾Ð¾Ð±Ð½Ð°Ñ€ÑƒÐ¶ÐµÐ½Ð¸Ðµ Ñ€ÑÐ´Ð¾Ð¼ ÑÐ¾ ÑÐºÑ€Ð¸Ð¿Ñ‚Ð¾Ð¼
+:: Àâòîîáíàðóæåíèå ðÿäîì ñî ñêðèïòîì
 :: -----------------------------
 if exist "%SCRIPT_DIR%RSI Launcher.exe" (
     set "LAUNCHER_PATH=%SCRIPT_DIR%"
@@ -129,25 +129,25 @@ call :LoadOrSetupConfig
 
 if "!LAUNCHER_PATH!"=="" (
     echo.
-    echo ÐŸÑƒÑ‚ÑŒ Ðº RSI Launcher Ð½Ðµ Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½.
+    echo Ïóòü ê RSI Launcher íå íàñòðîåí.
     echo.
     :SelectLauncherAfterLoad
-    call :SelectFolder "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð°Ð¿ÐºÑƒ Ñ RSI Launcher.exe" LAUNCHER_PATH
+    call :SelectFolder "Âûáåðèòå ïàïêó ñ RSI Launcher.exe" LAUNCHER_PATH
 
     if not "!LAUNCHER_PATH!"=="" (
         if not exist "!LAUNCHER_PATH!\RSI Launcher.exe" (
-            echo âœ— RSI Launcher.exe Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½ Ð² Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ð¹ Ð¿Ð°Ð¿ÐºÐµ
+            echo ? RSI Launcher.exe íå íàéäåí â âûáðàííîé ïàïêå
             echo.
-            set /p "RETRY=Ð’Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ Ð´Ñ€ÑƒÐ³ÑƒÑŽ Ð¿Ð°Ð¿ÐºÑƒ? (Y/N): "
+            set /p "RETRY=Âûáðàòü äðóãóþ ïàïêó? (Y/N): "
             if /i "!RETRY!"=="Y" goto :SelectLauncherAfterLoad
             set "LAUNCHER_PATH="
         ) else (
-            echo âœ“ RSI Launcher Ð½Ð°Ð¹Ð´ÐµÐ½: !LAUNCHER_PATH!
+            echo ? RSI Launcher íàéäåí: !LAUNCHER_PATH!
             call :SaveConfig
         )
     ) else (
-        echo ÐŸÐ°Ð¿ÐºÐ° Ð½Ðµ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð°
-        set /p "RETRY=ÐŸÐ¾Ð¿Ñ€Ð¾Ð±Ð¾Ð²Ð°Ñ‚ÑŒ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·? (Y/N): "
+        echo Ïàïêà íå âûáðàíà
+        set /p "RETRY=Ïîïðîáîâàòü åù¸ ðàç? (Y/N): "
         if /i "!RETRY!"=="Y" goto :SelectLauncherAfterLoad
     )
 )
@@ -168,82 +168,82 @@ set "PATHS_LOADED=1"
 call :RenderScreen
 
 :: =========================================================
-:: [1/4] ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð½Ñ‹Ñ… Ð²ÐµÑ€ÑÐ¸Ð¹
+:: [1/4] Ïðîâåðêà óñòàíîâëåííûõ âåðñèé
 :: =========================================================
-echo ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð½Ñ‹Ñ… Ð²ÐµÑ€ÑÐ¸Ð¹...
-call :ShowProgress "Ð¡ÐºÐ°Ð½Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð°Ð¿Ð¾Ðº..." 35
+echo Ïðîâåðêà óñòàíîâëåííûõ âåðñèé...
+call :ShowProgress "Ñêàíèðîâàíèå ïàïîê..." 35
 
 call :RefreshVersionStatus
 
-call :ShowProgress "Ð›Ð¾ÐºÐ°Ð»ÑŒÐ½Ñ‹Ðµ Ð²ÐµÑ€ÑÐ¸Ð¸ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ñ‹" 100
+call :ShowProgress "Ëîêàëüíûå âåðñèè îïðåäåëåíû" 100
 echo.
 
 if "!LIVE_CONFIGURED!"=="false" if "!PTU_CONFIGURED!"=="false" (
-    echo ÐžÐ¨Ð˜Ð‘ÐšÐ: ÐÐµ Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð° Ð½Ð¸ Ð¾Ð´Ð½Ð° Ð¿Ð°Ð¿ÐºÐ° Ð¸Ð³Ñ€Ñ‹ ^(LIVE/PTU^)
+    echo ÎØÈÁÊÀ: Íå íàñòðîåíà íè îäíà ïàïêà èãðû ^(LIVE/PTU^)
     echo.
-    set /p "RECONFIRM=ÐÐ°ÑÑ‚Ñ€Ð¾Ð¸Ñ‚ÑŒ Ð¿ÑƒÑ‚Ð¸ Ð·Ð°Ð½Ð¾Ð²Ð¾ ÑÐµÐ¹Ñ‡Ð°Ñ? (Y/N): "
+    set /p "RECONFIRM=Íàñòðîèòü ïóòè çàíîâî ñåé÷àñ? (Y/N): "
     if /i "!RECONFIRM!"=="Y" goto :SetupConfig
     pause
     exit /b 1
 )
 
 :: =========================================================
-:: [2/4] ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ñ€ÐµÐ»Ð¸Ð·Ð¾Ð² Ð½Ð° GitHub Ð¿Ð¾ Ñ‚ÐµÐ³Ð°Ð¼
+:: [2/4] Ïðîâåðêà ðåëèçîâ íà GitHub ïî òåãàì
 :: =========================================================
-echo ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ð¹ Ð½Ð° GitHub...
-call :ShowProgress "ÐŸÐ¾Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ Ðº GitHub..." 40
+echo Ïðîâåðêà îáíîâëåíèé íà GitHub...
+call :ShowProgress "Ïîäêëþ÷åíèå ê GitHub..." 40
 
 call :GetGithubVersionsByTags
 
 if "!GITHUB_OK!"=="false" (
-    echo âš ï¸ ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¾ Ñ€ÐµÐ»Ð¸Ð·Ð°Ñ… GitHub
+    echo ?? Íå óäàëîñü ïîëó÷èòü äàííûå î ðåëèçàõ GitHub
     echo.
 ) else (
-    call :ShowProgress "Ð’ÐµÑ€ÑÐ¸Ð¸ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ñ‹" 100
-    if not "!LATEST_LIVE_VERSION!"=="Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°" (
-        echo âœ“ LIVE Ð¿Ð¾ Ñ‚ÐµÐ³Ñƒ: !LATEST_LIVE_VERSION! ^(Ñ‚ÐµÐ³: !LATEST_LIVE_TAG!^)
+    call :ShowProgress "Âåðñèè îïðåäåëåíû" 100
+    if not "!LATEST_LIVE_VERSION!"=="íå íàéäåíà" (
+        echo ? LIVE ïî òåãó: !LATEST_LIVE_VERSION! ^(òåã: !LATEST_LIVE_TAG!^)
     ) else (
-        echo âš ï¸ LIVE-Ñ‚ÐµÐ³ ÑÑ€ÐµÐ´Ð¸ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½Ð¸Ñ… Ñ€ÐµÐ»Ð¸Ð·Ð¾Ð² Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½
+        echo ?? LIVE-òåã ñðåäè ïîñëåäíèõ ðåëèçîâ íå íàéäåí
     )
-    if not "!LATEST_PTU_VERSION!"=="Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°" (
-        echo âœ“ PTU Ð¿Ð¾ Ñ‚ÐµÐ³Ñƒ:  !LATEST_PTU_VERSION! ^(Ñ‚ÐµÐ³: !LATEST_PTU_TAG!^)
+    if not "!LATEST_PTU_VERSION!"=="íå íàéäåíà" (
+        echo ? PTU ïî òåãó:  !LATEST_PTU_VERSION! ^(òåã: !LATEST_PTU_TAG!^)
     ) else (
-        echo âš ï¸ PTU-Ñ‚ÐµÐ³ ÑÑ€ÐµÐ´Ð¸ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½Ð¸Ñ… Ñ€ÐµÐ»Ð¸Ð·Ð¾Ð² Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½
+        echo ?? PTU-òåã ñðåäè ïîñëåäíèõ ðåëèçîâ íå íàéäåí
     )
     echo.
 )
 
 :: =========================================================
-:: [3/4] Ð Ð°ÑÑ‡Ñ‘Ñ‚ ÑÑ‚Ð°Ñ‚ÑƒÑÐ¾Ð²
+:: [3/4] Ðàñ÷¸ò ñòàòóñîâ
 :: =========================================================
 call :RecalculateStatuses
 set "STATUS_TABLE_READY=1"
 call :RenderScreen
 
 :: =========================================================
-:: [4/4] ÐžÐ¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ðµ Ð½ÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ð¾ÑÑ‚Ð¸ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ¸
+:: [4/4] Îïðåäåëåíèå íåîáõîäèìîñòè óñòàíîâêè
 :: =========================================================
 call :DetermineInstallNeeds
 
 if "!GITHUB_OK!"=="false" (
-    echo ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¾Ð± Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸ÑÑ…
+    echo Íå óäàëîñü ïîëó÷èòü äàííûå îá îáíîâëåíèÿõ
     echo.
     call :ShowFinalReport
-    echo Ð—Ð°Ð¿ÑƒÑÐº Ð»Ð°ÑƒÐ½Ñ‡ÐµÑ€Ð° Ñ‡ÐµÑ€ÐµÐ· 3 ÑÐµÐºÑƒÐ½Ð´Ñ‹...
+    echo Çàïóñê ëàóí÷åðà ÷åðåç 3 ñåêóíäû...
     timeout /t 3 /nobreak >nul
     goto :LaunchGame
 )
 
 if "!INSTALL_LIVE_NEEDED!"=="false" if "!INSTALL_PTU_NEEDED!"=="false" (
-    echo Ð’ÑÐµ Ð²ÐµÑ€ÑÐ¸Ð¸ Ð°ÐºÑ‚ÑƒÐ°Ð»ÑŒÐ½Ñ‹!
+    echo Âñå âåðñèè àêòóàëüíû!
     echo.
-    echo âœ“ ÐžÐ±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ðµ Ð½Ðµ Ñ‚Ñ€ÐµÐ±ÑƒÐµÑ‚ÑÑ
-    echo Ð—Ð°Ð¿ÑƒÑÐº Ð»Ð°ÑƒÐ½Ñ‡ÐµÑ€Ð° Ñ‡ÐµÑ€ÐµÐ· 3 ÑÐµÐºÑƒÐ½Ð´Ñ‹...
+    echo ? Îáíîâëåíèå íå òðåáóåòñÿ
+    echo Çàïóñê ëàóí÷åðà ÷åðåç 3 ñåêóíäû...
     timeout /t 3 /nobreak >nul
     goto :LaunchGame
 )
 
-echo  Ð—Ð°Ð¿ÑƒÑÐº Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ð¹ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ¸...
+echo  Çàïóñê àâòîìàòè÷åñêîé óñòàíîâêè...
 echo.
 
 if "!INSTALL_LIVE_NEEDED!"=="true" (
@@ -259,7 +259,7 @@ if "!INSTALL_PTU_NEEDED!"=="true" (
 goto :LaunchGame
 
 :: =========================================================
-:: Ð£ÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ð¹ Ð²ÐµÑ‚ÐºÐ¸
+:: Óñòàíîâêà âûáðàííîé âåòêè
 :: =========================================================
 :PrepareSelectedArchive
 call :LoadCurrentBranchContext
@@ -267,68 +267,68 @@ if errorlevel 1 goto :ContinueAutoInstall
 
 call :CheckCurrentBranchAlreadyUpToDate "!CURRENT_INSTALL!"
 if "!BRANCH_ALREADY_SATISFIED!"=="true" (
-    if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=Ð°ÐºÑ‚ÑƒÐ°Ð»ÑŒÐ½Ð°, ÑÐºÐ°Ñ‡Ð¸Ð²Ð°Ð½Ð¸Ðµ Ð½Ðµ Ñ‚Ñ€ÐµÐ±ÑƒÐµÑ‚ÑÑ"
-    if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=Ð°ÐºÑ‚ÑƒÐ°Ð»ÑŒÐ½Ð°, ÑÐºÐ°Ñ‡Ð¸Ð²Ð°Ð½Ð¸Ðµ Ð½Ðµ Ñ‚Ñ€ÐµÐ±ÑƒÐµÑ‚ÑÑ"
+    if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=àêòóàëüíà, ñêà÷èâàíèå íå òðåáóåòñÿ"
+    if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=àêòóàëüíà, ñêà÷èâàíèå íå òðåáóåòñÿ"
     goto :ContinueAutoInstall
 )
 
 if "!TARGET_TAG!"=="" (
     echo.
-    echo ÐžÐ¨Ð˜Ð‘ÐšÐ: ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð´Ñ…Ð¾Ð´ÑÑ‰Ð¸Ð¹ Ñ‚ÐµÐ³ Ð´Ð»Ñ !CURRENT_INSTALL!.
-    if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=Ð¾ÑˆÐ¸Ð±ÐºÐ° Ð²Ñ‹Ð±Ð¾Ñ€Ð° Ñ‚ÐµÐ³Ð°"
-    if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=Ð¾ÑˆÐ¸Ð±ÐºÐ° Ð²Ñ‹Ð±Ð¾Ñ€Ð° Ñ‚ÐµÐ³Ð°"
+    echo ÎØÈÁÊÀ: Íå óäàëîñü îïðåäåëèòü ïîäõîäÿùèé òåã äëÿ !CURRENT_INSTALL!.
+    if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=îøèáêà âûáîðà òåãà"
+    if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=îøèáêà âûáîðà òåãà"
     goto :ContinueAutoInstall
 )
 
 echo.
-echo ÐŸÐ¾Ð´Ð³Ð¾Ñ‚Ð¾Ð²ÐºÐ° Ð°Ñ€Ñ…Ð¸Ð²Ð° !CURRENT_INSTALL! Ð²ÐµÑ€ÑÐ¸Ð¸ !TARGET_VERSION!...
-call :ShowProgress "Ð¡ÐºÐ°Ñ‡Ð¸Ð²Ð°Ð½Ð¸Ðµ Ð°Ñ€Ñ…Ð¸Ð²Ð°..." 25
+echo Ïîäãîòîâêà àðõèâà !CURRENT_INSTALL! âåðñèè !TARGET_VERSION!...
+call :ShowProgress "Ñêà÷èâàíèå àðõèâà..." 25
 
 call :DownloadAndExtractArchive "!TARGET_TAG!"
 if errorlevel 1 (
-    echo ÐžÐ¨Ð˜Ð‘ÐšÐ: ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐºÐ°Ñ‡Ð°Ñ‚ÑŒ Ð¸Ð»Ð¸ Ñ€Ð°ÑÐ¿Ð°ÐºÐ¾Ð²Ð°Ñ‚ÑŒ Ð°Ñ€Ñ…Ð¸Ð² Ñ€ÐµÐ»Ð¸Ð·Ð°.
-    if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=Ð¾ÑˆÐ¸Ð±ÐºÐ° ÑÐºÐ°Ñ‡Ð¸Ð²Ð°Ð½Ð¸Ñ/Ñ€Ð°ÑÐ¿Ð°ÐºÐ¾Ð²ÐºÐ¸"
-    if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=Ð¾ÑˆÐ¸Ð±ÐºÐ° ÑÐºÐ°Ñ‡Ð¸Ð²Ð°Ð½Ð¸Ñ/Ñ€Ð°ÑÐ¿Ð°ÐºÐ¾Ð²ÐºÐ¸"
+    echo ÎØÈÁÊÀ: Íå óäàëîñü ñêà÷àòü èëè ðàñïàêîâàòü àðõèâ ðåëèçà.
+    if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=îøèáêà ñêà÷èâàíèÿ/ðàñïàêîâêè"
+    if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=îøèáêà ñêà÷èâàíèÿ/ðàñïàêîâêè"
     goto :ContinueAutoInstall
 )
 
 if "!EXTRACTED_ROOT!"=="" (
-    echo ÐžÐ¨Ð˜Ð‘ÐšÐ: ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ð¸Ñ‚ÑŒ Ñ€Ð°ÑÐ¿Ð°ÐºÐ¾Ð²Ð°Ð½Ð½ÑƒÑŽ Ð¿Ð°Ð¿ÐºÑƒ Ð°Ñ€Ñ…Ð¸Ð²Ð°.
-    if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=Ð¾ÑˆÐ¸Ð±ÐºÐ° ÑÑ‚Ñ€ÑƒÐºÑ‚ÑƒÑ€Ñ‹ Ð°Ñ€Ñ…Ð¸Ð²Ð°"
-    if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=Ð¾ÑˆÐ¸Ð±ÐºÐ° ÑÑ‚Ñ€ÑƒÐºÑ‚ÑƒÑ€Ñ‹ Ð°Ñ€Ñ…Ð¸Ð²Ð°"
+    echo ÎØÈÁÊÀ: Íå óäàëîñü îïðåäåëèòü ðàñïàêîâàííóþ ïàïêó àðõèâà.
+    if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=îøèáêà ñòðóêòóðû àðõèâà"
+    if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=îøèáêà ñòðóêòóðû àðõèâà"
     goto :ContinueAutoInstall
 )
 
 set "ARCHIVE_GLOBAL_INI=!EXTRACTED_ROOT!\data\Localization\korean_(south_korea)\global.ini"
 if not exist "!ARCHIVE_GLOBAL_INI!" (
-    echo ÐžÐ¨Ð˜Ð‘ÐšÐ: Ð¤Ð°Ð¹Ð» global.ini Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½ Ð² Ñ€Ð°ÑÐ¿Ð°ÐºÐ¾Ð²Ð°Ð½Ð½Ð¾Ð¼ Ð°Ñ€Ñ…Ð¸Ð²Ðµ.
-    if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=global.ini Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½"
-    if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=global.ini Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½"
+    echo ÎØÈÁÊÀ: Ôàéë global.ini íå íàéäåí â ðàñïàêîâàííîì àðõèâå.
+    if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=global.ini íå íàéäåí"
+    if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=global.ini íå íàéäåí"
     goto :ContinueAutoInstall
 )
 
-call :ShowProgress "ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° ÑÐ¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ð³Ð¾ Ð°Ñ€Ñ…Ð¸Ð²Ð°..." 50
+call :ShowProgress "Ïðîâåðêà ñîäåðæèìîãî àðõèâà..." 50
 
-set "ARCHIVE_BUILD_TYPE=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½"
-set "ARCHIVE_VERSION=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°"
-set "ARCHIVE_VERSION_DIGITS=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°"
+set "ARCHIVE_BUILD_TYPE=íå íàéäåí"
+set "ARCHIVE_VERSION=íå íàéäåíà"
+set "ARCHIVE_VERSION_DIGITS=íå íàéäåíà"
 
 call :GetBuildTypeFromFile "!ARCHIVE_GLOBAL_INI!" ARCHIVE_BUILD_TYPE
 call :GetVersionFromFile "!ARCHIVE_GLOBAL_INI!" ARCHIVE_VERSION
 call :ExtractVersionDigits "!ARCHIVE_VERSION!" ARCHIVE_VERSION_DIGITS
 
-if "!ARCHIVE_BUILD_TYPE!"=="Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½" (
-    echo ÐžÐ¨Ð˜Ð‘ÐšÐ: ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ð¸Ñ‚ÑŒ Ñ‚Ð¸Ð¿ ÑÐ±Ð¾Ñ€ÐºÐ¸ Ð² Ð°Ñ€Ñ…Ð¸Ð²Ðµ.
-    if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=Ñ‚Ð¸Ð¿ ÑÐ±Ð¾Ñ€ÐºÐ¸ Ð½Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ñ‘Ð½"
-    if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=Ñ‚Ð¸Ð¿ ÑÐ±Ð¾Ñ€ÐºÐ¸ Ð½Ðµ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ñ‘Ð½"
+if "!ARCHIVE_BUILD_TYPE!"=="íå íàéäåí" (
+    echo ÎØÈÁÊÀ: Íå óäàëîñü îïðåäåëèòü òèï ñáîðêè â àðõèâå.
+    if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=òèï ñáîðêè íå îïðåäåë¸í"
+    if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=òèï ñáîðêè íå îïðåäåë¸í"
     goto :ContinueAutoInstall
 )
 
 if /i not "!ARCHIVE_BUILD_TYPE!"=="!CURRENT_INSTALL!" (
     echo.
-    echo âš ï¸ Ð’ÐÐ˜ÐœÐÐÐ˜Ð•: Ð’ Ð°Ñ€Ñ…Ð¸Ð²Ðµ Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚ÑÑ ÑÐ±Ð¾Ñ€ÐºÐ° Ñ‚Ð¸Ð¿Ð° !ARCHIVE_BUILD_TYPE!
-    echo    Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð°Ñ Ð¿Ð°Ð¿ÐºÐ°: !CURRENT_INSTALL!
-    echo    Ð£ÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° Ð¾Ñ‚Ð¼ÐµÐ½ÐµÐ½Ð°.
+    echo ?? ÂÍÈÌÀÍÈÅ: Â àðõèâå íàõîäèòñÿ ñáîðêà òèïà !ARCHIVE_BUILD_TYPE!
+    echo    Âûáðàííàÿ ïàïêà: !CURRENT_INSTALL!
+    echo    Óñòàíîâêà îòìåíåíà.
     echo.
     call :MarkCurrentTagRejected "!CURRENT_INSTALL!" "!TARGET_TAG!"
     call :OfferNextCandidate "!CURRENT_INSTALL!"
@@ -338,10 +338,10 @@ if /i not "!ARCHIVE_BUILD_TYPE!"=="!CURRENT_INSTALL!" (
 
 if not "!ARCHIVE_VERSION_DIGITS!"=="!TARGET_VERSION!" (
     echo.
-    echo âš ï¸ Ð’ÐÐ˜ÐœÐÐÐ˜Ð•: Ð’ÐµÑ€ÑÐ¸Ñ Ð² Ð°Ñ€Ñ…Ð¸Ð²Ðµ Ð½Ðµ ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÐµÑ‚ Ñ Ð¾Ð¶Ð¸Ð´Ð°ÐµÐ¼Ð¾Ð¹ Ð¿Ð¾ Ñ‚ÐµÐ³Ñƒ.
-    echo    ÐžÐ¶Ð¸Ð´Ð°Ð»Ð°ÑÑŒ: !TARGET_VERSION!
-    echo    Ð’ Ð°Ñ€Ñ…Ð¸Ð²Ðµ:  !ARCHIVE_VERSION_DIGITS!
-    echo    Ð£ÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° Ð¾Ñ‚Ð¼ÐµÐ½ÐµÐ½Ð°.
+    echo ?? ÂÍÈÌÀÍÈÅ: Âåðñèÿ â àðõèâå íå ñîâïàäàåò ñ îæèäàåìîé ïî òåãó.
+    echo    Îæèäàëàñü: !TARGET_VERSION!
+    echo    Â àðõèâå:  !ARCHIVE_VERSION_DIGITS!
+    echo    Óñòàíîâêà îòìåíåíà.
     echo.
     call :MarkCurrentTagRejected "!CURRENT_INSTALL!" "!TARGET_TAG!"
     call :OfferNextCandidate "!CURRENT_INSTALL!"
@@ -349,27 +349,27 @@ if not "!ARCHIVE_VERSION_DIGITS!"=="!TARGET_VERSION!" (
     goto :PrepareSelectedArchive
 )
 
-echo âœ“ ÐÑ€Ñ…Ð¸Ð² Ð¿Ð¾Ð´Ñ‚Ð²ÐµÑ€Ð¶Ð´Ñ‘Ð½: !ARCHIVE_BUILD_TYPE! !ARCHIVE_VERSION_DIGITS!
+echo ? Àðõèâ ïîäòâåðæä¸í: !ARCHIVE_BUILD_TYPE! !ARCHIVE_VERSION_DIGITS!
 echo.
 
 set "SOURCE_DATA=!EXTRACTED_ROOT!\data"
 if not exist "!SOURCE_DATA!" (
-    echo ÐžÐ¨Ð˜Ð‘ÐšÐ: Ð’ Ð°Ñ€Ñ…Ð¸Ð²Ðµ Ð¾Ñ‚ÑÑƒÑ‚ÑÑ‚Ð²ÑƒÐµÑ‚ Ð¿Ð°Ð¿ÐºÐ° data
-    if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=Ð² Ð°Ñ€Ñ…Ð¸Ð²Ðµ Ð½ÐµÑ‚ data"
-    if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=Ð² Ð°Ñ€Ñ…Ð¸Ð²Ðµ Ð½ÐµÑ‚ data"
+    echo ÎØÈÁÊÀ: Â àðõèâå îòñóòñòâóåò ïàïêà data
+    if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=â àðõèâå íåò data"
+    if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=â àðõèâå íåò data"
     goto :ContinueAutoInstall
 )
 
-call :ShowProgress "ÐšÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð¾Ð²..." 75
+call :ShowProgress "Êîïèðîâàíèå ôàéëîâ..." 75
 xcopy "!SOURCE_DATA!\*" "!SELECTED_PATH!\data\" /E /Y /I /Q >nul 2>&1
 if errorlevel 1 (
-    echo ÐžÐ¨Ð˜Ð‘ÐšÐ: ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ñ„Ð°Ð¹Ð»Ñ‹ Ð»Ð¾ÐºÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ð¸.
-    if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=Ð¾ÑˆÐ¸Ð±ÐºÐ° ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ"
-    if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=Ð¾ÑˆÐ¸Ð±ÐºÐ° ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ"
+    echo ÎØÈÁÊÀ: Íå óäàëîñü ñêîïèðîâàòü ôàéëû ëîêàëèçàöèè.
+    if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=îøèáêà êîïèðîâàíèÿ"
+    if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=îøèáêà êîïèðîâàíèÿ"
     goto :ContinueAutoInstall
 )
 
-call :ShowProgress "ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ° user.cfg..." 90
+call :ShowProgress "Íàñòðîéêà user.cfg..." 90
 
 if "!CURRENT_INSTALL!"=="LIVE" (
     set "USER_CFG_PATH=!LIVE_PATH!\user.cfg"
@@ -385,7 +385,7 @@ if "!backup_result!"=="0" (
 ) else if "!backup_result!"=="2" (
     call :CreateUserCfg "!USER_CFG_PATH!"
 ) else (
-    echo âš ï¸ ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒ Ñ€ÐµÐ·ÐµÑ€Ð²Ð½ÑƒÑŽ ÐºÐ¾Ð¿Ð¸ÑŽ user.cfg. ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ° user.cfg Ð¿Ñ€Ð¾Ð¿ÑƒÑ‰ÐµÐ½Ð°.
+    echo ?? Íå óäàëîñü ñîçäàòü ðåçåðâíóþ êîïèþ user.cfg. Íàñòðîéêà user.cfg ïðîïóùåíà.
 )
 
 call :RefreshVersionStatus
@@ -393,10 +393,10 @@ call :RecalculateStatuses
 
 if "!CURRENT_INSTALL!"=="LIVE" (
     set "LIVE_REPO=https://github.com/%GITHUB_AUTHOR%/%GITHUB_REPO%"
-    set "INSTALL_LIVE_RESULT=ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð° Ð´Ð¾ !ARCHIVE_VERSION_DIGITS!"
+    set "INSTALL_LIVE_RESULT=óñïåøíî îáíîâëåíà äî !ARCHIVE_VERSION_DIGITS!"
 ) else (
     set "PTU_REPO=https://github.com/%GITHUB_AUTHOR%/%GITHUB_REPO%"
-    set "INSTALL_PTU_RESULT=ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð° Ð´Ð¾ !ARCHIVE_VERSION_DIGITS!"
+    set "INSTALL_PTU_RESULT=óñïåøíî îáíîâëåíà äî !ARCHIVE_VERSION_DIGITS!"
 )
 
 set "LAST_REJECTED_LIVE_TAG="
@@ -404,15 +404,15 @@ set "LAST_REJECTED_PTU_TAG="
 
 call :SaveConfig
 call :RecalculateStatuses
-call :CompleteProgress "Ð—Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ð¸Ðµ..."
+call :CompleteProgress "Çàâåðøåíèå..."
 call :RenderScreen
-echo âœ“ Ð›Ð¾ÐºÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ !CURRENT_INSTALL! ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð° / Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð° Ð´Ð¾ Ð²ÐµÑ€ÑÐ¸Ð¸ !ARCHIVE_VERSION_DIGITS!
+echo ? Ëîêàëèçàöèÿ !CURRENT_INSTALL! óñïåøíî óñòàíîâëåíà / îáíîâëåíà äî âåðñèè !ARCHIVE_VERSION_DIGITS!
 echo.
 goto :ContinueAutoInstall
 
 :NoMoreCandidates
-if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=Ð¿Ð¾Ð´Ñ…Ð¾Ð´ÑÑ‰Ð¸Ñ… Ñ‚ÐµÐ³Ð¾Ð² Ð±Ð¾Ð»ÑŒÑˆÐµ Ð½ÐµÑ‚"
-if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=Ð¿Ð¾Ð´Ñ…Ð¾Ð´ÑÑ‰Ð¸Ñ… Ñ‚ÐµÐ³Ð¾Ð² Ð±Ð¾Ð»ÑŒÑˆÐµ Ð½ÐµÑ‚"
+if /i "!CURRENT_INSTALL!"=="LIVE" set "INSTALL_LIVE_RESULT=ïîäõîäÿùèõ òåãîâ áîëüøå íåò"
+if /i "!CURRENT_INSTALL!"=="PTU" set "INSTALL_PTU_RESULT=ïîäõîäÿùèõ òåãîâ áîëüøå íåò"
 goto :ContinueAutoInstall
 
 :ContinueAutoInstall
@@ -433,33 +433,33 @@ call :RecalculateStatuses
 call :RenderScreen
 call :ShowFinalReport
 
-echo Ð—Ð°Ð¿ÑƒÑÐº Ð»Ð°ÑƒÐ½Ñ‡ÐµÑ€Ð° Ñ‡ÐµÑ€ÐµÐ· 3 ÑÐµÐºÑƒÐ½Ð´Ñ‹...
+echo Çàïóñê ëàóí÷åðà ÷åðåç 3 ñåêóíäû...
 timeout /t 3 /nobreak >nul
 goto :LaunchGame
 
 :: =========================================================
-:: Ð—Ð°Ð¿ÑƒÑÐº Ð»Ð°ÑƒÐ½Ñ‡ÐµÑ€Ð°
+:: Çàïóñê ëàóí÷åðà
 :: =========================================================
 :LaunchGame
 echo.
-echo Ð—Ð°Ð¿ÑƒÑÐº RSI Launcher...
+echo Çàïóñê RSI Launcher...
 
 if not "!LAUNCHER_PATH!"=="" (
     if exist "!LAUNCHER_PATH!\RSI Launcher.exe" (
-        echo âœ“ Ð—Ð°Ð¿ÑƒÑÐºÐ°ÑŽ Ð»Ð°ÑƒÐ½Ñ‡ÐµÑ€ Ð¸Ð·: !LAUNCHER_PATH!
+        echo ? Çàïóñêàþ ëàóí÷åð èç: !LAUNCHER_PATH!
         powershell -NoProfile -ExecutionPolicy Bypass -Command "Start-Process -FilePath '!LAUNCHER_PATH!\RSI Launcher.exe'" >nul 2>&1
         exit /b 0
     )
 )
 
 if exist "%SCRIPT_DIR%RSI Launcher.exe" (
-    echo âœ“ Ð—Ð°Ð¿ÑƒÑÐºÐ°ÑŽ Ð»Ð°ÑƒÐ½Ñ‡ÐµÑ€ Ð¸Ð· Ñ‚ÐµÐºÑƒÑ‰ÐµÐ¹ Ð¿Ð°Ð¿ÐºÐ¸...
+    echo ? Çàïóñêàþ ëàóí÷åð èç òåêóùåé ïàïêè...
     powershell -NoProfile -ExecutionPolicy Bypass -Command "Start-Process -FilePath '%SCRIPT_DIR%RSI Launcher.exe'" >nul 2>&1
     exit /b 0
 )
 
-echo ÐžÐ¨Ð˜Ð‘ÐšÐ: RSI Launcher.exe Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½
-echo ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹Ñ‚Ðµ Ð¿ÑƒÑ‚ÑŒ Ðº Ð»Ð°ÑƒÐ½Ñ‡ÐµÑ€Ñƒ Ð² ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ð¸
+echo ÎØÈÁÊÀ: RSI Launcher.exe íå íàéäåí
+echo Íàñòðîéòå ïóòü ê ëàóí÷åðó â êîíôèãóðàöèè
 pause
 exit /b 1
 
@@ -475,17 +475,17 @@ goto :eof
 
 :DrawHeader
 echo.
-echo â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+echo ========================================================
 echo STAR - Script To Apply Russian.
-echo Ð¡ÐºÑ€Ð¸Ð¿Ñ‚ Ð´Ð»Ñ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ¸ Ñ€ÑƒÑÑÐºÐ¾Ð¹ Ð»Ð¾ÐºÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ð¸ Ð² Star citizen.
-echo â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+echo Ñêðèïò äëÿ óñòàíîâêè ðóññêîé ëîêàëèçàöèè â Star citizen.
+echo ========================================================
 echo.
 goto :eof
 
 :DrawPaths
 if defined PATHS_LOADED (
-    echo ÐÐ°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð½Ñ‹Ðµ Ð¿ÑƒÑ‚Ð¸:
-    if not "!LAUNCHER_PATH!"=="" echo   Ð›Ð°ÑƒÐ½Ñ‡ÐµÑ€: !LAUNCHER_PATH!
+    echo Íàñòðîåííûå ïóòè:
+    if not "!LAUNCHER_PATH!"=="" echo   Ëàóí÷åð: !LAUNCHER_PATH!
     if "!LIVE_CONFIGURED!"=="true" if not "!LIVE_PATH!"=="" echo   LIVE:    !LIVE_PATH!
     if "!PTU_CONFIGURED!"=="true" if not "!PTU_PATH!"=="" echo   PTU:     !PTU_PATH!
     echo.
@@ -493,10 +493,10 @@ if defined PATHS_LOADED (
 goto :eof
 
 :DrawStatusTable
-echo  Ð¡Ñ‚Ð°Ñ‚ÑƒÑ Ð»Ð¾ÐºÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ð¸:
+echo  Ñòàòóñ ëîêàëèçàöèè:
 echo.
 echo  +-----------------------------------------------------------------------------------+
-echo  ^| Ð’ÐµÑ‚ÐºÐ° ^| Ð£ÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð°            ^| GitHub Ð¿Ð¾ Ñ‚ÐµÐ³Ñƒ       ^| Ð¡Ñ‚Ð°Ñ‚ÑƒÑ                    ^|
+echo  ^| Âåòêà ^| Óñòàíîâëåíà            ^| GitHub ïî òåãó       ^| Ñòàòóñ                    ^|
 echo  +-----------------------------------------------------------------------------------+
 call :PrintStatusRow "LIVE" "!LIVE_VERSION!" "!LATEST_LIVE_VERSION!" "!LIVE_STATUS!"
 call :PrintStatusRow "PTU" "!PTU_VERSION!" "!LATEST_PTU_VERSION!" "!PTU_STATUS!"
@@ -529,12 +529,12 @@ set "raw_status=%~1"
 set "return_var=%~2"
 set "cell_text=%raw_status%"
 
-if /i "%raw_status%"=="Ð°ÐºÑ‚ÑƒÐ°Ð»ÑŒÐ½Ð°" set "cell_text=âœ… Ð°ÐºÑ‚ÑƒÐ°Ð»ÑŒÐ½Ð°             "
-if /i "%raw_status%"=="ÑƒÑÑ‚Ð°Ñ€ÐµÐ»Ð°" set "cell_text=âš ï¸ ÑƒÑÑ‚Ð°Ñ€ÐµÐ»Ð°              "
-if /i "%raw_status%"=="Ð½Ðµ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð°" set "cell_text=ðŸ“¥ Ð½Ðµ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð°        "
-if /i "%raw_status%"=="Ð½ÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ñ‚Ð¸Ð¿" set "cell_text=âŒ Ð½ÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ñ‚Ð¸Ð¿          "
-if /i "%raw_status%"=="Ð½ÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ… GitHub" set "cell_text=ðŸŒ Ð½ÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ… GitHub     "
-if /i "%raw_status%"=="Ð¿Ð°Ð¿ÐºÐ° Ð½Ðµ Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð°" set "cell_text=ðŸ“ Ð¿Ð°Ð¿ÐºÐ° Ð½Ðµ Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð°    "
+if /i "%raw_status%"=="àêòóàëüíà" set "cell_text=? àêòóàëüíà             "
+if /i "%raw_status%"=="óñòàðåëà" set "cell_text=?? óñòàðåëà              "
+if /i "%raw_status%"=="íå óñòàíîâëåíà" set "cell_text=?? íå óñòàíîâëåíà        "
+if /i "%raw_status%"=="íåâåðíûé òèï" set "cell_text=? íåâåðíûé òèï          "
+if /i "%raw_status%"=="íåò äàííûõ GitHub" set "cell_text=?? íåò äàííûõ GitHub     "
+if /i "%raw_status%"=="ïàïêà íå íàñòðîåíà" set "cell_text=?? ïàïêà íå íàñòðîåíà    "
 
 set "%return_var%=%cell_text%"
 goto :eof
@@ -544,12 +544,12 @@ set "raw_status=%~1"
 set "return_var=%~2"
 set "status_color=%CLR_DEFAULT%"
 
-if /i "%raw_status%"=="Ð°ÐºÑ‚ÑƒÐ°Ð»ÑŒÐ½Ð°" set "status_color=%CLR_GREEN%"
-if /i "%raw_status%"=="ÑƒÑÑ‚Ð°Ñ€ÐµÐ»Ð°" set "status_color=%CLR_YELLOW%"
-if /i "%raw_status%"=="Ð½Ðµ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð°" set "status_color=%CLR_CYAN%"
-if /i "%raw_status%"=="Ð½ÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ñ‚Ð¸Ð¿" set "status_color=%CLR_RED%"
-if /i "%raw_status%"=="Ð½ÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ… GitHub" set "status_color=%CLR_RED%"
-if /i "%raw_status%"=="Ð¿Ð°Ð¿ÐºÐ° Ð½Ðµ Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð°" set "status_color=%CLR_GRAY%"
+if /i "%raw_status%"=="àêòóàëüíà" set "status_color=%CLR_GREEN%"
+if /i "%raw_status%"=="óñòàðåëà" set "status_color=%CLR_YELLOW%"
+if /i "%raw_status%"=="íå óñòàíîâëåíà" set "status_color=%CLR_CYAN%"
+if /i "%raw_status%"=="íåâåðíûé òèï" set "status_color=%CLR_RED%"
+if /i "%raw_status%"=="íåò äàííûõ GitHub" set "status_color=%CLR_RED%"
+if /i "%raw_status%"=="ïàïêà íå íàñòðîåíà" set "status_color=%CLR_GRAY%"
 
 set "%return_var%=%status_color%"
 goto :eof
@@ -560,22 +560,22 @@ set "return_var=%~2"
 set "version_color=%CLR_DEFAULT%"
 
 if /i "%branch%"=="LIVE" (
-    if /i "!LIVE_STATUS!"=="Ð°ÐºÑ‚ÑƒÐ°Ð»ÑŒÐ½Ð°" set "version_color=%CLR_GREEN%"
-    if /i "!LIVE_STATUS!"=="ÑƒÑÑ‚Ð°Ñ€ÐµÐ»Ð°" set "version_color=%CLR_YELLOW%"
-    if /i "!LIVE_STATUS!"=="Ð½ÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ñ‚Ð¸Ð¿" set "version_color=%CLR_RED%"
-    if /i "!LIVE_STATUS!"=="Ð½Ðµ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð°" set "version_color=%CLR_CYAN%"
-    if /i "!LIVE_STATUS!"=="Ð¿Ð°Ð¿ÐºÐ° Ð½Ðµ Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð°" set "version_color=%CLR_GRAY%"
-    if /i "!LIVE_STATUS!"=="Ð½ÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ… GitHub" set "version_color=%CLR_DEFAULT%"
+    if /i "!LIVE_STATUS!"=="àêòóàëüíà" set "version_color=%CLR_GREEN%"
+    if /i "!LIVE_STATUS!"=="óñòàðåëà" set "version_color=%CLR_YELLOW%"
+    if /i "!LIVE_STATUS!"=="íåâåðíûé òèï" set "version_color=%CLR_RED%"
+    if /i "!LIVE_STATUS!"=="íå óñòàíîâëåíà" set "version_color=%CLR_CYAN%"
+    if /i "!LIVE_STATUS!"=="ïàïêà íå íàñòðîåíà" set "version_color=%CLR_GRAY%"
+    if /i "!LIVE_STATUS!"=="íåò äàííûõ GitHub" set "version_color=%CLR_DEFAULT%"
     goto :GetVersionColorDone
 )
 
 if /i "%branch%"=="PTU" (
-    if /i "!PTU_STATUS!"=="Ð°ÐºÑ‚ÑƒÐ°Ð»ÑŒÐ½Ð°" set "version_color=%CLR_GREEN%"
-    if /i "!PTU_STATUS!"=="ÑƒÑÑ‚Ð°Ñ€ÐµÐ»Ð°" set "version_color=%CLR_YELLOW%"
-    if /i "!PTU_STATUS!"=="Ð½ÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ñ‚Ð¸Ð¿" set "version_color=%CLR_RED%"
-    if /i "!PTU_STATUS!"=="Ð½Ðµ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð°" set "version_color=%CLR_CYAN%"
-    if /i "!PTU_STATUS!"=="Ð¿Ð°Ð¿ÐºÐ° Ð½Ðµ Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð°" set "version_color=%CLR_GRAY%"
-    if /i "!PTU_STATUS!"=="Ð½ÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ… GitHub" set "version_color=%CLR_DEFAULT%"
+    if /i "!PTU_STATUS!"=="àêòóàëüíà" set "version_color=%CLR_GREEN%"
+    if /i "!PTU_STATUS!"=="óñòàðåëà" set "version_color=%CLR_YELLOW%"
+    if /i "!PTU_STATUS!"=="íåâåðíûé òèï" set "version_color=%CLR_RED%"
+    if /i "!PTU_STATUS!"=="íå óñòàíîâëåíà" set "version_color=%CLR_CYAN%"
+    if /i "!PTU_STATUS!"=="ïàïêà íå íàñòðîåíà" set "version_color=%CLR_GRAY%"
+    if /i "!PTU_STATUS!"=="íåò äàííûõ GitHub" set "version_color=%CLR_DEFAULT%"
 )
 
 :GetVersionColorDone
@@ -598,8 +598,8 @@ set "bar="
 set /a "filled=%percent%/5"
 set /a "empty=20-filled"
 
-for /l %%i in (1,1,%filled%) do set "bar=!bar!â–ˆ"
-for /l %%i in (1,1,%empty%) do set "bar=!bar!â–‘"
+for /l %%i in (1,1,%filled%) do set "bar=!bar!-"
+for /l %%i in (1,1,%empty%) do set "bar=!bar!-"
 
 call :RenderScreen
 echo !message! [!bar!] !percent!%%
@@ -608,45 +608,45 @@ goto :eof
 :CompleteProgress
 set "message=%~1"
 call :RenderScreen
-echo !message! [â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ] 100%%
+echo !message! [--------------------] 100%%
 echo.
 goto :eof
 
 :ShowFinalReport
-echo Ð ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ¸:
+echo Ðåçóëüòàò óñòàíîâêè:
 echo   LIVE: !INSTALL_LIVE_RESULT!
 echo   PTU : !INSTALL_PTU_RESULT!
 echo.
 
 if "!GITHUB_OK!"=="false" (
-    echo âš ï¸ ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¾Ð± Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸ÑÑ… Ñ GitHub.
+    echo ?? Íå óäàëîñü ïîëó÷èòü äàííûå îá îáíîâëåíèÿõ ñ GitHub.
     echo.
     goto :eof
 )
 
-if /i "!INSTALL_LIVE_RESULT!"=="Ð¿Ð¾Ð´Ñ…Ð¾Ð´ÑÑ‰Ð¸Ñ… Ñ‚ÐµÐ³Ð¾Ð² Ð±Ð¾Ð»ÑŒÑˆÐµ Ð½ÐµÑ‚" (
-    echo âš ï¸ LIVE Ð½Ðµ Ð±Ñ‹Ð»Ð° Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð°: Ð¿Ð¾Ð´Ñ…Ð¾Ð´ÑÑ‰Ð¸Ðµ Ñ‚ÐµÐ³Ð¸ Ð·Ð°ÐºÐ¾Ð½Ñ‡Ð¸Ð»Ð¸ÑÑŒ.
+if /i "!INSTALL_LIVE_RESULT!"=="ïîäõîäÿùèõ òåãîâ áîëüøå íåò" (
+    echo ?? LIVE íå áûëà îáíîâëåíà: ïîäõîäÿùèå òåãè çàêîí÷èëèñü.
 )
-if /i "!INSTALL_PTU_RESULT!"=="Ð¿Ð¾Ð´Ñ…Ð¾Ð´ÑÑ‰Ð¸Ñ… Ñ‚ÐµÐ³Ð¾Ð² Ð±Ð¾Ð»ÑŒÑˆÐµ Ð½ÐµÑ‚" (
-    echo âš ï¸ PTU Ð½Ðµ Ð±Ñ‹Ð»Ð° Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð°: Ð¿Ð¾Ð´Ñ…Ð¾Ð´ÑÑ‰Ð¸Ðµ Ñ‚ÐµÐ³Ð¸ Ð·Ð°ÐºÐ¾Ð½Ñ‡Ð¸Ð»Ð¸ÑÑŒ.
+if /i "!INSTALL_PTU_RESULT!"=="ïîäõîäÿùèõ òåãîâ áîëüøå íåò" (
+    echo ?? PTU íå áûëà îáíîâëåíà: ïîäõîäÿùèå òåãè çàêîí÷èëèñü.
 )
-if /i "!INSTALL_LIVE_RESULT!"=="Ð¾ÑˆÐ¸Ð±ÐºÐ° Ð²Ñ‹Ð±Ð¾Ñ€Ð° Ñ‚ÐµÐ³Ð°" (
-    echo âš ï¸ LIVE Ð½Ðµ Ð±Ñ‹Ð»Ð° Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð°: Ð½Ðµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ð¸Ñ‚ÑŒ Ñ‚ÐµÐ³.
+if /i "!INSTALL_LIVE_RESULT!"=="îøèáêà âûáîðà òåãà" (
+    echo ?? LIVE íå áûëà îáíîâëåíà: íå óäàëîñü îïðåäåëèòü òåã.
 )
-if /i "!INSTALL_PTU_RESULT!"=="Ð¾ÑˆÐ¸Ð±ÐºÐ° Ð²Ñ‹Ð±Ð¾Ñ€Ð° Ñ‚ÐµÐ³Ð°" (
-    echo âš ï¸ PTU Ð½Ðµ Ð±Ñ‹Ð»Ð° Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð°: Ð½Ðµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ð¸Ñ‚ÑŒ Ñ‚ÐµÐ³.
+if /i "!INSTALL_PTU_RESULT!"=="îøèáêà âûáîðà òåãà" (
+    echo ?? PTU íå áûëà îáíîâëåíà: íå óäàëîñü îïðåäåëèòü òåã.
 )
 
 echo.
-echo Ð’ÑÐµ Ð²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ñ‹Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ Ð·Ð°Ð²ÐµÑ€ÑˆÐµÐ½Ñ‹.
+echo Âñå âîçìîæíûå äåéñòâèÿ çàâåðøåíû.
 goto :eof
 
 :: =========================================================
-:: ÐšÐ¾Ð½Ñ„Ð¸Ð³ / Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ° Ð¿ÑƒÑ‚ÐµÐ¹
+:: Êîíôèã / íàñòðîéêà ïóòåé
 :: =========================================================
 :LoadOrSetupConfig
 if exist "%CONFIG_FILE%" (
-    echo Ð—Ð°Ð³Ñ€ÑƒÐ¶Ð°ÑŽ ÑÐ¾Ñ…Ñ€Ð°Ð½Ñ‘Ð½Ð½ÑƒÑŽ ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸ÑŽ...
+    echo Çàãðóæàþ ñîõðàí¸ííóþ êîíôèãóðàöèþ...
 
     for /f "usebackq delims=" %%L in ("%CONFIG_FILE%") do (
         set "cfg_line=%%L"
@@ -665,8 +665,8 @@ if exist "%CONFIG_FILE%" (
         )
     )
 
-    echo ÐÐ°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð½Ñ‹Ðµ Ð¿ÑƒÑ‚Ð¸:
-    if not "!LAUNCHER_PATH!"=="" echo   Ð›Ð°ÑƒÐ½Ñ‡ÐµÑ€: !LAUNCHER_PATH!
+    echo Íàñòðîåííûå ïóòè:
+    if not "!LAUNCHER_PATH!"=="" echo   Ëàóí÷åð: !LAUNCHER_PATH!
     if not "!LIVE_PATH!"=="" echo   LIVE: !LIVE_PATH!
     if not "!PTU_PATH!"=="" echo   PTU:  !PTU_PATH!
     echo.
@@ -678,7 +678,7 @@ if exist "%CONFIG_FILE%" (
     if not "!LIVE_PATH!"=="" (
         call :ValidateGameFolder "!LIVE_PATH!" "LIVE"
         if errorlevel 1 (
-            echo âš  ÐŸÐ°Ð¿ÐºÐ° LIVE Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð° Ð¿Ð¾ ÑÐ¾Ñ…Ñ€Ð°Ð½Ñ‘Ð½Ð½Ð¾Ð¼Ñƒ Ð¿ÑƒÑ‚Ð¸
+            echo ? Ïàïêà LIVE íåäîñòóïíà ïî ñîõðàí¸ííîìó ïóòè
             set "LIVE_PATH="
             set "BROKEN_CONFIG=true"
         ) else (
@@ -689,7 +689,7 @@ if exist "%CONFIG_FILE%" (
     if not "!PTU_PATH!"=="" (
         call :ValidateGameFolder "!PTU_PATH!" "PTU"
         if errorlevel 1 (
-            echo âš  ÐŸÐ°Ð¿ÐºÐ° PTU Ð½ÐµÐ´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð° Ð¿Ð¾ ÑÐ¾Ñ…Ñ€Ð°Ð½Ñ‘Ð½Ð½Ð¾Ð¼Ñƒ Ð¿ÑƒÑ‚Ð¸
+            echo ? Ïàïêà PTU íåäîñòóïíà ïî ñîõðàí¸ííîìó ïóòè
             set "PTU_PATH="
             set "BROKEN_CONFIG=true"
         ) else (
@@ -699,7 +699,7 @@ if exist "%CONFIG_FILE%" (
 
     if not "!LAUNCHER_PATH!"=="" (
         if not exist "!LAUNCHER_PATH!\RSI Launcher.exe" (
-            echo âš  Ð›Ð°ÑƒÐ½Ñ‡ÐµÑ€ Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½ Ð¿Ð¾ ÑƒÐºÐ°Ð·Ð°Ð½Ð½Ð¾Ð¼Ñƒ Ð¿ÑƒÑ‚Ð¸
+            echo ? Ëàóí÷åð íå íàéäåí ïî óêàçàííîìó ïóòè
             set "LAUNCHER_PATH="
             set "BROKEN_CONFIG=true"
         )
@@ -710,34 +710,34 @@ if exist "%CONFIG_FILE%" (
 
     echo.
     if "!BROKEN_CONFIG!"=="true" (
-        echo Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ñ‘Ð½Ð½Ñ‹Ðµ Ð¿ÑƒÑ‚Ð¸ ÑÑ‚Ð°Ð»Ð¸ Ð½ÐµÐ²Ð°Ð»Ð¸Ð´Ð½Ñ‹.
-        set /p "RECONFIGURE_NOW=ÐÐ°ÑÑ‚Ñ€Ð¾Ð¸Ñ‚ÑŒ Ð¿ÑƒÑ‚Ð¸ Ð·Ð°Ð½Ð¾Ð²Ð¾ ÑÐµÐ¹Ñ‡Ð°Ñ? (Y/N): "
+        echo Ñîõðàí¸ííûå ïóòè ñòàëè íåâàëèäíû.
+        set /p "RECONFIGURE_NOW=Íàñòðîèòü ïóòè çàíîâî ñåé÷àñ? (Y/N): "
         if /i "!RECONFIGURE_NOW!"=="Y" goto :SetupConfig
         goto :eof
     ) else (
-        echo ÐÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ð¾ Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¸Ñ‚ÑŒ Ð¿ÑƒÑ‚Ð¸ Ð·Ð°Ð½Ð¾Ð²Ð¾.
+        echo Íåîáõîäèìî íàñòðîèòü ïóòè çàíîâî.
         goto :SetupConfig
     )
 ) else (
-    echo ÐšÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ð¾Ð½Ð½Ñ‹Ð¹ Ñ„Ð°Ð¹Ð» Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½.
-    echo Ð—Ð°Ð¿ÑƒÑÐº Ð¿ÐµÑ€Ð²Ð¾Ð½Ð°Ñ‡Ð°Ð»ÑŒÐ½Ð¾Ð¹ Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸...
+    echo Êîíôèãóðàöèîííûé ôàéë íå íàéäåí.
+    echo Çàïóñê ïåðâîíà÷àëüíîé íàñòðîéêè...
 )
 
 :SetupConfig
 cls
 echo.
-echo â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-echo    ÐŸÐµÑ€Ð²Ð¾Ð½Ð°Ñ‡Ð°Ð»ÑŒÐ½Ð°Ñ Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ° Ð¿ÑƒÑ‚ÐµÐ¹
-echo â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+echo ========================================
+echo    Ïåðâîíà÷àëüíàÿ íàñòðîéêà ïóòåé
+echo ========================================
 echo.
 
-echo ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ° Ð¿ÑƒÑ‚Ð¸ Ðº RSI Launcher
+echo Íàñòðîéêà ïóòè ê RSI Launcher
 echo.
 
 if not "!LAUNCHER_PATH!"=="" (
     if not defined LAUNCHER_AUTO_DETECTED (
-        echo âœ“ Ð¢ÐµÐºÑƒÑ‰Ð¸Ð¹ Ð¿ÑƒÑ‚ÑŒ Ðº Ð»Ð°ÑƒÐ½Ñ‡ÐµÑ€Ñƒ: !LAUNCHER_PATH!
-        set /p "RECONFIGURE_LAUNCHER=ÐŸÐµÑ€ÐµÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ Ð¿ÑƒÑ‚ÑŒ Ðº Ð»Ð°ÑƒÐ½Ñ‡ÐµÑ€Ñƒ? (Y/N): "
+        echo ? Òåêóùèé ïóòü ê ëàóí÷åðó: !LAUNCHER_PATH!
+        set /p "RECONFIGURE_LAUNCHER=Ïåðåóñòàíîâèòü ïóòü ê ëàóí÷åðó? (Y/N): "
         if /i not "!RECONFIGURE_LAUNCHER!"=="Y" goto :SkipLauncherSetup
     ) else (
         goto :SkipLauncherSetup
@@ -745,42 +745,42 @@ if not "!LAUNCHER_PATH!"=="" (
 )
 
 :SelectLauncherFolder
-call :SelectFolder "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð°Ð¿ÐºÑƒ Ñ RSI Launcher.exe" LAUNCHER_PATH
+call :SelectFolder "Âûáåðèòå ïàïêó ñ RSI Launcher.exe" LAUNCHER_PATH
 if not "!LAUNCHER_PATH!"=="" (
     if not exist "!LAUNCHER_PATH!\RSI Launcher.exe" (
-        echo âœ— RSI Launcher.exe Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½ Ð² Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð¾Ð¹ Ð¿Ð°Ð¿ÐºÐµ
-        set /p "RETRY=Ð’Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ Ð´Ñ€ÑƒÐ³ÑƒÑŽ Ð¿Ð°Ð¿ÐºÑƒ? (Y/N): "
+        echo ? RSI Launcher.exe íå íàéäåí â âûáðàííîé ïàïêå
+        set /p "RETRY=Âûáðàòü äðóãóþ ïàïêó? (Y/N): "
         if /i "!RETRY!"=="Y" goto :SelectLauncherFolder
         set "LAUNCHER_PATH="
     ) else (
-        echo âœ“ RSI Launcher Ð½Ð°Ð¹Ð´ÐµÐ½: !LAUNCHER_PATH!
+        echo ? RSI Launcher íàéäåí: !LAUNCHER_PATH!
     )
 ) else (
-    echo ÐŸÐ°Ð¿ÐºÐ° Ð½Ðµ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð°
+    echo Ïàïêà íå âûáðàíà
 )
 
 :SkipLauncherSetup
 
 echo.
-echo ÐŸÐ¾Ð¸ÑÐº ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð½Ñ‹Ñ… Ð²ÐµÑ€ÑÐ¸Ð¹ Ð¸Ð³Ñ€Ñ‹
-echo ÐÐ²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ð¹ Ð¿Ð¾Ð¸ÑÐº ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð½Ñ‹Ñ… Ð²ÐµÑ€ÑÐ¸Ð¹...
+echo Ïîèñê óñòàíîâëåííûõ âåðñèé èãðû
+echo Àâòîìàòè÷åñêèé ïîèñê óñòàíîâëåííûõ âåðñèé...
 call :FindStandardPaths
 
 echo.
-echo ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ° Ð¿Ð°Ð¿ÐºÐ¸ LIVE
+echo Íàñòðîéêà ïàïêè LIVE
 
 if defined LIVE_AUTO_DETECTED (
-    echo âœ“ ÐŸÐ°Ð¿ÐºÐ° LIVE Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸ Ð¾Ð±Ð½Ð°Ñ€ÑƒÐ¶ÐµÐ½Ð°: !LIVE_PATH!
+    echo ? Ïàïêà LIVE àâòîìàòè÷åñêè îáíàðóæåíà: !LIVE_PATH!
     set "LIVE_CONFIGURED=true"
     set "LIVE_AUTO_DETECTED="
     goto :SkipLiveSetup
 )
 
 if "!LIVE_FOUND!"=="true" (
-    echo âœ“ ÐÐ°Ð¹Ð´ÐµÐ½Ð° Ð¿Ð¾Ñ‚ÐµÐ½Ñ†Ð¸Ð°Ð»ÑŒÐ½Ð°Ñ Ð¿Ð°Ð¿ÐºÐ° LIVE: !LIVE_PATH!
+    echo ? Íàéäåíà ïîòåíöèàëüíàÿ ïàïêà LIVE: !LIVE_PATH!
     call :ValidateGameFolder "!LIVE_PATH!" "LIVE"
     if not errorlevel 1 (
-        set /p "USE_FOUND=Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ ÑÑ‚Ð¾Ñ‚ Ð¿ÑƒÑ‚ÑŒ? (Y/N): "
+        set /p "USE_FOUND=Èñïîëüçîâàòü ýòîò ïóòü? (Y/N): "
         if /i not "!USE_FOUND!"=="Y" (
             set "LIVE_FOUND=false"
             set "LIVE_PATH="
@@ -797,11 +797,11 @@ if "!LIVE_FOUND!"=="true" (
 
 if "!LIVE_FOUND!"=="false" (
     :SelectLiveFolder
-    call :SelectFolder "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð°Ð¿ÐºÑƒ LIVE Ð¸Ð³Ñ€Ñ‹" LIVE_PATH
+    call :SelectFolder "Âûáåðèòå ïàïêó LIVE èãðû" LIVE_PATH
     if not "!LIVE_PATH!"=="" (
         call :ValidateGameFolder "!LIVE_PATH!" "LIVE"
         if errorlevel 1 (
-            set /p "RETRY=Ð’Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ Ð´Ñ€ÑƒÐ³ÑƒÑŽ Ð¿Ð°Ð¿ÐºÑƒ? (Y/N): "
+            set /p "RETRY=Âûáðàòü äðóãóþ ïàïêó? (Y/N): "
             if /i "!RETRY!"=="Y" goto :SelectLiveFolder
             set "LIVE_PATH="
             set "LIVE_CONFIGURED=false"
@@ -814,13 +814,13 @@ if "!LIVE_FOUND!"=="false" (
 :SkipLiveSetup
 
 echo.
-echo ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ° PTU (Ð¾Ð¿Ñ†Ð¸Ð¾Ð½Ð°Ð»ÑŒÐ½Ð¾)
+echo Íàñòðîéêà PTU (îïöèîíàëüíî)
 
 if "!PTU_FOUND!"=="true" (
-    echo âœ“ ÐÐ°Ð¹Ð´ÐµÐ½Ð° Ð¿Ð¾Ñ‚ÐµÐ½Ñ†Ð¸Ð°Ð»ÑŒÐ½Ð°Ñ Ð¿Ð°Ð¿ÐºÐ° PTU: !PTU_PATH!
+    echo ? Íàéäåíà ïîòåíöèàëüíàÿ ïàïêà PTU: !PTU_PATH!
     call :ValidateGameFolder "!PTU_PATH!" "PTU"
     if not errorlevel 1 (
-        set /p "USE_FOUND=Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ ÑÑ‚Ð¾Ñ‚ Ð¿ÑƒÑ‚ÑŒ? (Y/N): "
+        set /p "USE_FOUND=Èñïîëüçîâàòü ýòîò ïóòü? (Y/N): "
         if /i not "!USE_FOUND!"=="Y" (
             set "PTU_FOUND=false"
             set "PTU_PATH="
@@ -836,14 +836,14 @@ if "!PTU_FOUND!"=="true" (
 )
 
 if "!PTU_FOUND!"=="false" (
-    set /p "ASK_PTU=ÐÐ°ÑÑ‚Ñ€Ð¾Ð¸Ñ‚ÑŒ Ð¿Ð°Ð¿ÐºÑƒ PTU? (Y/N): "
+    set /p "ASK_PTU=Íàñòðîèòü ïàïêó PTU? (Y/N): "
     if /i "!ASK_PTU!"=="Y" (
         :SelectPTUFolder
-        call :SelectFolder "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ð¿Ð°Ð¿ÐºÑƒ PTU Ð¸Ð³Ñ€Ñ‹" PTU_PATH
+        call :SelectFolder "Âûáåðèòå ïàïêó PTU èãðû" PTU_PATH
         if not "!PTU_PATH!"=="" (
             call :ValidateGameFolder "!PTU_PATH!" "PTU"
             if errorlevel 1 (
-                set /p "RETRY=Ð’Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ Ð´Ñ€ÑƒÐ³ÑƒÑŽ Ð¿Ð°Ð¿ÐºÑƒ? (Y/N): "
+                set /p "RETRY=Âûáðàòü äðóãóþ ïàïêó? (Y/N): "
                 if /i "!RETRY!"=="Y" goto :SelectPTUFolder
                 set "PTU_PATH="
                 set "PTU_CONFIGURED=false"
@@ -855,20 +855,20 @@ if "!PTU_FOUND!"=="false" (
 )
 
 if "!LIVE_CONFIGURED!"=="false" if "!PTU_CONFIGURED!"=="false" (
-    echo ÐžÐ¨Ð˜Ð‘ÐšÐ: ÐÐµ Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð¾ Ð½Ð¸ Ð¾Ð´Ð½Ð¾Ð¹ Ð¿Ð°Ð¿ÐºÐ¸ Ð¸Ð³Ñ€Ñ‹
+    echo ÎØÈÁÊÀ: Íå íàñòðîåíî íè îäíîé ïàïêè èãðû
     pause
     exit /b 1
 )
 
 call :SaveConfig
 echo.
-echo âœ“ ÐšÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ñ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð°: %CONFIG_FILE%
+echo ? Êîíôèãóðàöèÿ ñîõðàíåíà: %CONFIG_FILE%
 timeout /t 2 /nobreak >nul
 goto :eof
 
 :SaveConfig
 (
-    echo //ÐšÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð°Ñ†Ð¸Ð¾Ð½Ð½Ñ‹Ð¹ Ñ„Ð°Ð¹Ð» ÑÐºÑ€Ð¸Ð¿Ñ‚Ð° Ñ€ÑƒÑÐ¸Ñ„Ð¸ÐºÐ°Ñ†Ð¸Ð¸ StarCitizen
+    echo //Êîíôèãóðàöèîííûé ôàéë ñêðèïòà ðóñèôèêàöèè StarCitizen
     echo LAUNCHER_PATH=!LAUNCHER_PATH!
     echo LIVE_REPO=!LIVE_REPO!
     echo LIVE_VERSION=!LIVE_VERSION!
@@ -887,38 +887,38 @@ set "is_valid=0"
 if "%game_path%"=="" exit /b 1
 
 echo.
-echo ÐŸÑ€Ð¾Ð²ÐµÑ€ÑÑŽ Ð¿Ð°Ð¿ÐºÑƒ !game_type!...
+echo Ïðîâåðÿþ ïàïêó !game_type!...
 
 if not exist "!game_path!\" (
-    echo âœ— ÐŸÐ°Ð¿ÐºÐ° Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚: !game_path!
+    echo ? Ïàïêà íå ñóùåñòâóåò: !game_path!
     set "is_valid=1"
     goto :ValidateGameFolderEnd
 )
 
 if not exist "!game_path!\Bin64\" (
-    echo âœ— ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²ÑƒÐµÑ‚ Ð¾Ð±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð°Ñ Ð¿Ð°Ð¿ÐºÐ°: Bin64
+    echo ? Îòñóòñòâóåò îáÿçàòåëüíàÿ ïàïêà: Bin64
     set "is_valid=1"
     goto :ValidateGameFolderEnd
 )
 
 if not exist "!game_path!\StarCitizen_Launcher.exe" (
-    echo âœ— ÐžÑ‚ÑÑƒÑ‚ÑÑ‚Ð²ÑƒÐµÑ‚ Ð¾Ð±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ð¹ Ñ„Ð°Ð¹Ð»: StarCitizen_Launcher.exe
+    echo ? Îòñóòñòâóåò îáÿçàòåëüíûé ôàéë: StarCitizen_Launcher.exe
     set "is_valid=1"
     goto :ValidateGameFolderEnd
 )
 
 if not exist "!game_path!\data\Localization\korean_(south_korea)\global.ini" (
-    echo âš  Ð¤Ð°Ð¹Ð» Ð»Ð¾ÐºÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ð¸ Ð¿Ð¾ÐºÐ° Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½ ^(ÑÑ‚Ð¾ Ð´Ð¾Ð¿ÑƒÑÑ‚Ð¸Ð¼Ð¾ Ð´Ð»Ñ Ð½Ð¾Ð²Ð¾Ð¹ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ¸^)
+    echo ? Ôàéë ëîêàëèçàöèè ïîêà íå íàéäåí ^(ýòî äîïóñòèìî äëÿ íîâîé óñòàíîâêè^)
 )
 
-echo âœ“ ÐÐ°Ð¹Ð´ÐµÐ½ StarCitizen_Launcher.exe
-echo âœ“ ÐÐ°Ð¹Ð´ÐµÐ½Ð° Ð¿Ð°Ð¿ÐºÐ° Bin64
+echo ? Íàéäåí StarCitizen_Launcher.exe
+echo ? Íàéäåíà ïàïêà Bin64
 
 :ValidateGameFolderEnd
 if !is_valid! equ 0 (
-    echo âœ“ ÐŸÐ°Ð¿ÐºÐ° !game_type! Ð¿Ñ€Ð¾ÑˆÐ»Ð° Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÑƒ
+    echo ? Ïàïêà !game_type! ïðîøëà ïðîâåðêó
 ) else (
-    echo âœ— ÐŸÐ°Ð¿ÐºÐ° !game_type! Ð½Ðµ Ð¿Ñ€Ð¾ÑˆÐ»Ð° Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÑƒ
+    echo ? Ïàïêà !game_type! íå ïðîøëà ïðîâåðêó
 )
 exit /b !is_valid!
 
@@ -979,23 +979,23 @@ if "!SELECTED_PATH!"=="" (
     set "!varname!="
     exit /b 1
 ) else (
-    echo Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð° Ð¿Ð°Ð¿ÐºÐ°: !SELECTED_PATH!
+    echo Âûáðàíà ïàïêà: !SELECTED_PATH!
     set "!varname!=!SELECTED_PATH!"
     exit /b 0
 )
 
 :: =========================================================
-:: Ð’ÐµÑ€ÑÐ¸Ð¸ / ÑÑ‚Ð°Ñ‚ÑƒÑÑ‹
+:: Âåðñèè / ñòàòóñû
 :: =========================================================
 :RefreshVersionStatus
-set "LIVE_BUILD_TYPE=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½"
-set "PTU_BUILD_TYPE=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½"
+set "LIVE_BUILD_TYPE=íå íàéäåí"
+set "PTU_BUILD_TYPE=íå íàéäåí"
 
-set "LIVE_VERSION=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°"
-set "PTU_VERSION=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°"
+set "LIVE_VERSION=íå íàéäåíà"
+set "PTU_VERSION=íå íàéäåíà"
 
-set "LIVE_VERSION_DIGITS=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°"
-set "PTU_VERSION_DIGITS=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°"
+set "LIVE_VERSION_DIGITS=íå íàéäåíà"
+set "PTU_VERSION_DIGITS=íå íàéäåíà"
 
 set "LIVE_TYPE_MISMATCH=false"
 set "PTU_TYPE_MISMATCH=false"
@@ -1029,39 +1029,39 @@ goto :eof
 
 :RecalculateStatuses
 if "!LIVE_CONFIGURED!"=="false" (
-    set "LIVE_STATUS=Ð¿Ð°Ð¿ÐºÐ° Ð½Ðµ Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð°"
-) else if "!LIVE_VERSION!"=="Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°" (
-    if not "!LATEST_LIVE_VERSION!"=="Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°" (
-        set "LIVE_STATUS=Ð½Ðµ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð°"
+    set "LIVE_STATUS=ïàïêà íå íàñòðîåíà"
+) else if "!LIVE_VERSION!"=="íå íàéäåíà" (
+    if not "!LATEST_LIVE_VERSION!"=="íå íàéäåíà" (
+        set "LIVE_STATUS=íå óñòàíîâëåíà"
     ) else (
-        set "LIVE_STATUS=Ð½ÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ… GitHub"
+        set "LIVE_STATUS=íåò äàííûõ GitHub"
     )
 ) else if "!LIVE_TYPE_MISMATCH!"=="true" (
-    set "LIVE_STATUS=Ð½ÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ñ‚Ð¸Ð¿"
-) else if "!LATEST_LIVE_VERSION!"=="Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°" (
-    set "LIVE_STATUS=Ð½ÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ… GitHub"
+    set "LIVE_STATUS=íåâåðíûé òèï"
+) else if "!LATEST_LIVE_VERSION!"=="íå íàéäåíà" (
+    set "LIVE_STATUS=íåò äàííûõ GitHub"
 ) else if "!LIVE_VERSION_DIGITS!"=="!LATEST_LIVE_VERSION!" (
-    set "LIVE_STATUS=Ð°ÐºÑ‚ÑƒÐ°Ð»ÑŒÐ½Ð°"
+    set "LIVE_STATUS=àêòóàëüíà"
 ) else (
-    set "LIVE_STATUS=ÑƒÑÑ‚Ð°Ñ€ÐµÐ»Ð°"
+    set "LIVE_STATUS=óñòàðåëà"
 )
 
 if "!PTU_CONFIGURED!"=="false" (
-    set "PTU_STATUS=Ð¿Ð°Ð¿ÐºÐ° Ð½Ðµ Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð°"
-) else if "!PTU_VERSION!"=="Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°" (
-    if not "!LATEST_PTU_VERSION!"=="Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°" (
-        set "PTU_STATUS=Ð½Ðµ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð°"
+    set "PTU_STATUS=ïàïêà íå íàñòðîåíà"
+) else if "!PTU_VERSION!"=="íå íàéäåíà" (
+    if not "!LATEST_PTU_VERSION!"=="íå íàéäåíà" (
+        set "PTU_STATUS=íå óñòàíîâëåíà"
     ) else (
-        set "PTU_STATUS=Ð½ÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ… GitHub"
+        set "PTU_STATUS=íåò äàííûõ GitHub"
     )
 ) else if "!PTU_TYPE_MISMATCH!"=="true" (
-    set "PTU_STATUS=Ð½ÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ñ‚Ð¸Ð¿"
-) else if "!LATEST_PTU_VERSION!"=="Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°" (
-    set "PTU_STATUS=Ð½ÐµÑ‚ Ð´Ð°Ð½Ð½Ñ‹Ñ… GitHub"
+    set "PTU_STATUS=íåâåðíûé òèï"
+) else if "!LATEST_PTU_VERSION!"=="íå íàéäåíà" (
+    set "PTU_STATUS=íåò äàííûõ GitHub"
 ) else if "!PTU_VERSION_DIGITS!"=="!LATEST_PTU_VERSION!" (
-    set "PTU_STATUS=Ð°ÐºÑ‚ÑƒÐ°Ð»ÑŒÐ½Ð°"
+    set "PTU_STATUS=àêòóàëüíà"
 ) else (
-    set "PTU_STATUS=ÑƒÑÑ‚Ð°Ñ€ÐµÐ»Ð°"
+    set "PTU_STATUS=óñòàðåëà"
 )
 goto :eof
 
@@ -1071,35 +1071,35 @@ set "INSTALL_PTU_NEEDED=false"
 
 if "!GITHUB_OK!"=="false" (
     if "!LIVE_CONFIGURED!"=="true" (
-        set "INSTALL_LIVE_RESULT=Ð½Ðµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ñ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ñ"
+        set "INSTALL_LIVE_RESULT=íå óäàëîñü ïðîâåðèòü îáíîâëåíèÿ"
     ) else (
-        set "INSTALL_LIVE_RESULT=Ð½Ðµ Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð°"
+        set "INSTALL_LIVE_RESULT=íå íàñòðîåíà"
     )
 
     if "!PTU_CONFIGURED!"=="true" (
-        set "INSTALL_PTU_RESULT=Ð½Ðµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ñ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ñ"
+        set "INSTALL_PTU_RESULT=íå óäàëîñü ïðîâåðèòü îáíîâëåíèÿ"
     ) else (
-        set "INSTALL_PTU_RESULT=Ð½Ðµ Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð°"
+        set "INSTALL_PTU_RESULT=íå íàñòðîåíà"
     )
 
     goto :eof
 )
 
 if "!LIVE_CONFIGURED!"=="true" (
-    if "!LIVE_VERSION!"=="Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°" set "INSTALL_LIVE_NEEDED=true"
+    if "!LIVE_VERSION!"=="íå íàéäåíà" set "INSTALL_LIVE_NEEDED=true"
     if "!LIVE_TYPE_MISMATCH!"=="true" set "INSTALL_LIVE_NEEDED=true"
     if "!LIVE_TYPE_MISMATCH!"=="false" (
-        if not "!LATEST_LIVE_VERSION!"=="Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°" (
+        if not "!LATEST_LIVE_VERSION!"=="íå íàéäåíà" (
             if not "!LIVE_VERSION_DIGITS!"=="!LATEST_LIVE_VERSION!" set "INSTALL_LIVE_NEEDED=true"
         )
     )
 )
 
 if "!PTU_CONFIGURED!"=="true" (
-    if "!PTU_VERSION!"=="Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°" set "INSTALL_PTU_NEEDED=true"
+    if "!PTU_VERSION!"=="íå íàéäåíà" set "INSTALL_PTU_NEEDED=true"
     if "!PTU_TYPE_MISMATCH!"=="true" set "INSTALL_PTU_NEEDED=true"
     if "!PTU_TYPE_MISMATCH!"=="false" (
-        if not "!LATEST_PTU_VERSION!"=="Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°" (
+        if not "!LATEST_PTU_VERSION!"=="íå íàéäåíà" (
             if not "!PTU_VERSION_DIGITS!"=="!LATEST_PTU_VERSION!" set "INSTALL_PTU_NEEDED=true"
         )
     )
@@ -1107,22 +1107,22 @@ if "!PTU_CONFIGURED!"=="true" (
 
 if "!LIVE_CONFIGURED!"=="true" (
     if "!INSTALL_LIVE_NEEDED!"=="true" (
-        set "INSTALL_LIVE_RESULT=Ð¾Ð¶Ð¸Ð´Ð°ÐµÑ‚ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ¸"
+        set "INSTALL_LIVE_RESULT=îæèäàåò óñòàíîâêè"
     ) else (
-        set "INSTALL_LIVE_RESULT=Ð°ÐºÑ‚ÑƒÐ°Ð»ÑŒÐ½Ð°"
+        set "INSTALL_LIVE_RESULT=àêòóàëüíà"
     )
 ) else (
-    set "INSTALL_LIVE_RESULT=Ð½Ðµ Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð°"
+    set "INSTALL_LIVE_RESULT=íå íàñòðîåíà"
 )
 
 if "!PTU_CONFIGURED!"=="true" (
     if "!INSTALL_PTU_NEEDED!"=="true" (
-        set "INSTALL_PTU_RESULT=Ð¾Ð¶Ð¸Ð´Ð°ÐµÑ‚ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ¸"
+        set "INSTALL_PTU_RESULT=îæèäàåò óñòàíîâêè"
     ) else (
-        set "INSTALL_PTU_RESULT=Ð°ÐºÑ‚ÑƒÐ°Ð»ÑŒÐ½Ð°"
+        set "INSTALL_PTU_RESULT=àêòóàëüíà"
     )
 ) else (
-    set "INSTALL_PTU_RESULT=Ð½Ðµ Ð½Ð°ÑÑ‚Ñ€Ð¾ÐµÐ½Ð°"
+    set "INSTALL_PTU_RESULT=íå íàñòðîåíà"
 )
 
 goto :eof
@@ -1154,7 +1154,7 @@ if /i "%branch%"=="PTU" (
 goto :eof
 
 :: =========================================================
-:: GitHub / ÐºÐ°Ð½Ð´Ð¸Ð´Ð°Ñ‚Ñ‹
+:: GitHub / êàíäèäàòû
 :: =========================================================
 :GetGithubVersionsByTags
 set "GITHUB_OK=false"
@@ -1193,9 +1193,9 @@ if !PTU_CAND_COUNT! gtr 0 set "GITHUB_OK=true"
 goto :eof
 
 :SetCurrentGithubVersions
-set "LATEST_LIVE_VERSION=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°"
+set "LATEST_LIVE_VERSION=íå íàéäåíà"
 set "LATEST_LIVE_TAG="
-set "LATEST_PTU_VERSION=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°"
+set "LATEST_PTU_VERSION=íå íàéäåíà"
 set "LATEST_PTU_TAG="
 
 if !LIVE_CAND_COUNT! geq !LIVE_CURRENT_INDEX! (
@@ -1277,11 +1277,11 @@ if /i "%branch%"=="LIVE" (
     )
 
     if "!FOUND!"=="false" (
-        echo Ð”Ñ€ÑƒÐ³Ð¸Ñ… LIVE-ÐºÐ°Ð½Ð´Ð¸Ð´Ð°Ñ‚Ð¾Ð² Ð¿Ð¾ ÑÐ¿Ð¸ÑÐºÑƒ Ñ‚ÐµÐ³Ð¾Ð² Ð±Ð¾Ð»ÑŒÑˆÐµ Ð½ÐµÑ‚.
+        echo Äðóãèõ LIVE-êàíäèäàòîâ ïî ñïèñêó òåãîâ áîëüøå íåò.
         exit /b 2
     )
 
-    echo ÐÐ²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸ Ð¿Ñ€Ð¾Ð±ÑƒÑŽ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ð¹ LIVE Ñ‚ÐµÐ³: !NEXT_TAG! ^(!NEXT_VERSION!^)
+    echo Àâòîìàòè÷åñêè ïðîáóþ ñëåäóþùèé LIVE òåã: !NEXT_TAG! ^(!NEXT_VERSION!^)
     set /a LIVE_CURRENT_INDEX=!NEXT_INDEX!
     call :SetCurrentGithubVersions
     exit /b 0
@@ -1310,11 +1310,11 @@ if /i "%branch%"=="PTU" (
     )
 
     if "!FOUND!"=="false" (
-        echo Ð”Ñ€ÑƒÐ³Ð¸Ñ… PTU-ÐºÐ°Ð½Ð´Ð¸Ð´Ð°Ñ‚Ð¾Ð² Ð¿Ð¾ ÑÐ¿Ð¸ÑÐºÑƒ Ñ‚ÐµÐ³Ð¾Ð² Ð±Ð¾Ð»ÑŒÑˆÐµ Ð½ÐµÑ‚.
+        echo Äðóãèõ PTU-êàíäèäàòîâ ïî ñïèñêó òåãîâ áîëüøå íåò.
         exit /b 2
     )
 
-    echo ÐÐ²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸ Ð¿Ñ€Ð¾Ð±ÑƒÑŽ ÑÐ»ÐµÐ´ÑƒÑŽÑ‰Ð¸Ð¹ PTU Ñ‚ÐµÐ³: !NEXT_TAG! ^(!NEXT_VERSION!^)
+    echo Àâòîìàòè÷åñêè ïðîáóþ ñëåäóþùèé PTU òåã: !NEXT_TAG! ^(!NEXT_VERSION!^)
     set /a PTU_CURRENT_INDEX=!NEXT_INDEX!
     call :SetCurrentGithubVersions
     exit /b 0
@@ -1323,19 +1323,19 @@ if /i "%branch%"=="PTU" (
 exit /b 2
 
 :: =========================================================
-:: Ð¤Ð°Ð¹Ð»Ñ‹ Ð¸Ð³Ñ€Ñ‹
+:: Ôàéëû èãðû
 :: =========================================================
 :GetVersionFromFile
 set "file_path=%~1"
 set "return_var=%~2"
-set "version=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°"
+set "version=íå íàéäåíà"
 
 if not exist "%file_path%" (
-    set "%return_var%=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°"
+    set "%return_var%=íå íàéäåíà"
     goto :eof
 )
 
-for /f "usebackq delims=" %%b in (`powershell -NoProfile -ExecutionPolicy Bypass -Command "try { $content = Get-Content -LiteralPath '%file_path%' -Encoding UTF8 -Raw; if($content -match 'Ð£ÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð½Ð°Ñ Ð²ÐµÑ€ÑÐ¸Ñ:\s+((?:LIVE|PTU)\s+[\d\.]+\s+v\d+)'){ $matches[1] } else { 'Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°' } } catch { 'Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°' }"`) do (
+for /f "usebackq delims=" %%b in (`powershell -NoProfile -ExecutionPolicy Bypass -Command "try { $content = Get-Content -LiteralPath '%file_path%' -Encoding UTF8 -Raw; if($content -match 'Óñòàíîâëåííàÿ âåðñèÿ:\s+((?:LIVE|PTU)\s+[\d\.]+\s+v\d+)'){ $matches[1] } else { 'íå íàéäåíà' } } catch { 'íå íàéäåíà' }"`) do (
     set "version=%%b"
 )
 
@@ -1345,14 +1345,14 @@ goto :eof
 :GetBuildTypeFromFile
 set "file_path=%~1"
 set "return_var=%~2"
-set "build_type=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½"
+set "build_type=íå íàéäåí"
 
 if not exist "%file_path%" (
-    set "%return_var%=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½"
+    set "%return_var%=íå íàéäåí"
     goto :eof
 )
 
-for /f "usebackq delims=" %%b in (`powershell -NoProfile -ExecutionPolicy Bypass -Command "try { $content = Get-Content -LiteralPath '%file_path%' -Encoding UTF8 -Raw; if($content -match 'Ð£ÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð½Ð°Ñ Ð²ÐµÑ€ÑÐ¸Ñ:\s+(LIVE|PTU)\s+[\d\.]+\s+v\d+'){ $matches[1] } else { 'Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½' } } catch { 'Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½' }"`) do (
+for /f "usebackq delims=" %%b in (`powershell -NoProfile -ExecutionPolicy Bypass -Command "try { $content = Get-Content -LiteralPath '%file_path%' -Encoding UTF8 -Raw; if($content -match 'Óñòàíîâëåííàÿ âåðñèÿ:\s+(LIVE|PTU)\s+[\d\.]+\s+v\d+'){ $matches[1] } else { 'íå íàéäåí' } } catch { 'íå íàéäåí' }"`) do (
     set "build_type=%%b"
 )
 
@@ -1362,7 +1362,7 @@ goto :eof
 :ExtractVersionDigits
 set "full_version=%~1"
 set "return_var=%~2"
-set "version_digits=Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½Ð°"
+set "version_digits=íå íàéäåíà"
 
 for /f "tokens=2,3" %%a in ("%full_version%") do (
     set "version_digits=%%a %%b"
@@ -1375,7 +1375,7 @@ goto :eof
 set "user_cfg_path=%~1"
 
 if "%user_cfg_path%"=="" (
-    echo [DEBUG] BackupUserCfg: Ð¿ÑƒÑÑ‚Ð¾Ð¹ Ð¿ÑƒÑ‚ÑŒ
+    echo [DEBUG] BackupUserCfg: ïóñòîé ïóòü
     exit /b 3
 )
 
@@ -1385,7 +1385,7 @@ if not exist "%user_cfg_path%" (
 
 copy /y "%user_cfg_path%" "%user_cfg_path%.bak" >nul 2>&1
 if errorlevel 1 (
-    echo [DEBUG] BackupUserCfg: Ð½Ðµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ ÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒ backup: "%user_cfg_path%.bak"
+    echo [DEBUG] BackupUserCfg: íå óäàëîñü ñîçäàòü backup: "%user_cfg_path%.bak"
     exit /b 1
 )
 
@@ -1397,12 +1397,12 @@ set "backup_path=%user_cfg_path%.bak"
 set "new_path=%user_cfg_path%.new"
 
 if "%user_cfg_path%"=="" (
-    echo [DEBUG] UpdateUserCfg: Ð¿ÑƒÑÑ‚Ð¾Ð¹ Ð¿ÑƒÑ‚ÑŒ
+    echo [DEBUG] UpdateUserCfg: ïóñòîé ïóòü
     exit /b 1
 )
 
 if not exist "%backup_path%" (
-    echo [DEBUG] UpdateUserCfg: backup Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½: "%backup_path%"
+    echo [DEBUG] UpdateUserCfg: backup íå íàéäåí: "%backup_path%"
     exit /b 1
 )
 
@@ -1410,7 +1410,7 @@ set "HAS_LANG=false"
 set "HAS_AUDIO=false"
 
 (
-    rem Ñ„Ð°Ð¹Ð» ÑÐ¾Ð·Ð´Ð°Ñ‘Ñ‚ÑÑ Ð·Ð°Ð½Ð¾Ð²Ð¾
+    rem ôàéë ñîçäà¸òñÿ çàíîâî
 ) > "%new_path%"
 
 for /f "usebackq delims=" %%a in ("%backup_path%") do (
@@ -1448,7 +1448,7 @@ if /i "!HAS_AUDIO!"=="false" (
 
 move /y "%new_path%" "%user_cfg_path%" >nul 2>&1
 if errorlevel 1 (
-    echo [DEBUG] UpdateUserCfg: move Ð½Ðµ ÑƒÐ´Ð°Ð»ÑÑ, Ð¿Ñ‹Ñ‚Ð°ÑŽÑÑŒ Ð²Ð¾ÑÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ backup
+    echo [DEBUG] UpdateUserCfg: move íå óäàëñÿ, ïûòàþñü âîññòàíîâèòü backup
     copy /y "%backup_path%" "%user_cfg_path%" >nul 2>&1
     del /q "%new_path%" >nul 2>&1
     exit /b 1
@@ -1460,14 +1460,14 @@ exit /b 0
 set "user_cfg_path=%~1"
 
 if "%user_cfg_path%"=="" (
-    echo [DEBUG] CreateUserCfg: Ð¿ÑƒÑÑ‚Ð¾Ð¹ Ð¿ÑƒÑ‚ÑŒ
+    echo [DEBUG] CreateUserCfg: ïóñòîé ïóòü
     exit /b 1
 )
 
 for %%D in ("%user_cfg_path%") do set "user_cfg_dir=%%~dpD"
 
 if not exist "%user_cfg_dir%" (
-    echo [DEBUG] CreateUserCfg: Ð¿Ð°Ð¿ÐºÐ° Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚: "%user_cfg_dir%"
+    echo [DEBUG] CreateUserCfg: ïàïêà íå ñóùåñòâóåò: "%user_cfg_dir%"
     exit /b 1
 )
 
@@ -1477,10 +1477,10 @@ if not exist "%user_cfg_dir%" (
 ) > "%user_cfg_path%"
 
 if exist "%user_cfg_path%" (
-    echo [DEBUG] CreateUserCfg: Ñ„Ð°Ð¹Ð» ÑÐ¾Ð·Ð´Ð°Ð½: "%user_cfg_path%"
+    echo [DEBUG] CreateUserCfg: ôàéë ñîçäàí: "%user_cfg_path%"
     exit /b 0
 ) else (
-    echo [DEBUG] CreateUserCfg: Ñ„Ð°Ð¹Ð» Ð½Ðµ ÑÐ¾Ð·Ð´Ð°Ð½: "%user_cfg_path%"
+    echo [DEBUG] CreateUserCfg: ôàéë íå ñîçäàí: "%user_cfg_path%"
     exit /b 1
 )
 
@@ -1501,7 +1501,7 @@ set "DOWNLOAD_URL=https://github.com/%GITHUB_AUTHOR%/%GITHUB_REPO%/archive/refs/
 powershell -NoProfile -ExecutionPolicy Bypass -Command "try { Invoke-WebRequest -Headers @{ 'User-Agent'='SC-RU-Updater' } -Uri '%DOWNLOAD_URL%' -OutFile '%ZIP_FILE%' -UseBasicParsing; exit 0 } catch { exit 1 }" >nul 2>&1
 if errorlevel 1 exit /b 1
 
-call :ShowProgress "Ð Ð°ÑÐ¿Ð°ÐºÐ¾Ð²ÐºÐ° Ð°Ñ€Ñ…Ð¸Ð²Ð°..." 40
+call :ShowProgress "Ðàñïàêîâêà àðõèâà..." 40
 powershell -NoProfile -ExecutionPolicy Bypass -Command "try { Expand-Archive -Path '%ZIP_FILE%' -DestinationPath '%EXTRACT_DIR%' -Force; exit 0 } catch { exit 1 }" >nul 2>&1
 if errorlevel 1 exit /b 1
 
