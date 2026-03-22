@@ -7,8 +7,7 @@
 
 Программа предоставляется «как есть» (AS IS), без каких-либо гарантий. Использование осуществляется на ваш страх и риск. Автор не несёт ответственности за возможные потери данных или нарушения работы системы.
 
-
-<img width="1481" height="760" alt="image" src="https://github.com/user-attachments/assets/326264d7-db16-4aa3-bb27-d5937f5928c4" />
+<img width="1481" height="760" alt="image" src="https://github.com/user-attachments/assets/2286c9dc-c511-4d67-832f-39a820321f5a" />
 
 
 ## 📦 Быстрый старт
